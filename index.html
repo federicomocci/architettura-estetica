@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architettura Estetica | Silvia Lai Architetto</title>
+    <meta name="description" content="Valorizzazione degli spazi senza ristrutturazione. Case vacanza e locali commerciali. Interventi rapidi, non invasivi, risultati straordinari.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-bg: #FDFBF9;
+            --color-text: #2C2825;
+            --color-text-light: #6B6560;
+            --color-accent: #C4A77D;
+            --color-accent-dark: #8B7355;
+            --color-warm-gray: #E8E4E0;
+            --color-terracotta: #C9836B;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-size: 16px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 400;
+        }
+
+        p {
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            max-width: 65ch;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease, padding 0.3s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(253, 251, 249, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--color-text);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            width: 28px;
+            height: 1.5px;
+            background: var(--color-text);
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--color-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-menu.active {
+            right: 0;
+        }
+
+        .nav-menu a {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--color-text);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            opacity: 1;
+        }
+
+        @media (min-width: 768px) {
+            .nav-toggle {
+                display: none;
+            }
+
+            .nav-menu {
+                position: static;
+                width: auto;
+                height: auto;
+                flex-direction: row;
+                gap: 2.5rem;
+                background: transparent;
+            }
+
+            .nav-menu a {
+                font-size: 0.85rem;
+                font-family: var(--font-body);
+                font-weight: 400;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0) 0%,
+                rgba(0,0,0,0.1) 50%,
+                rgba(0,0,0,0.5) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            padding-bottom: 4rem;
+            color: white;
+            width: 100%;
+        }
+
+        .hero-content h1 {
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 30px rgba(0,0,0,0.3);
+        }
+
+        .hero-tagline {
+            font-family: var(--font-display);
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            font-style: italic;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        @media (min-width: 768px) {
+            section {
+                padding: 8rem 4rem;
+            }
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-accent-dark);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Vantaggi Section */
+        .vantaggi {
+            background: var(--color-text);
+            color: var(--color-bg);
+        }
+
+        .vantaggi-grid {
+            display: grid;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .vantaggi-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 4rem;
+            }
+        }
+
+        .vantaggio {
+            border-left: 1px solid var(--color-accent);
+            padding-left: 1.5rem;
+        }
+
+        .vantaggio h3 {
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+
+        .vantaggio p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* Target Section */
+        .target {
+            padding: 0;
+        }
+
+        .target-grid {
+            display: grid;
+        }
+
+        @media (min-width: 768px) {
+            .target-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .target-item {
+            position: relative;
+            height: 80vh;
+            min-height: 500px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .target-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .target-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .target-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0) 40%,
+                rgba(0,0,0,0.7) 100%
+            );
+        }
+
+        .target-content {
+            position: relative;
+            z-index: 2;
+            padding: 3rem;
+            color: white;
+        }
+
+        .target-content h3 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .target-content p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        /* Intro Text Section */
+        .intro-text {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .intro-text h2 {
+            margin-bottom: 2rem;
+        }
+
+        .intro-text p {
+            margin: 0 auto 1.5rem;
+            color: var(--color-text-light);
+        }
+
+        .intro-text .highlight {
+            font-family: var(--font-display);
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-style: italic;
+            color: var(--color-text);
+            margin-top: 2rem;
+        }
+
+        /* Casi Studio Section */
+        .casi-studio {
+            padding: 5rem 0;
+        }
+
+        .casi-studio-header {
+            padding: 0 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .casi-studio-header {
+                padding: 0 4rem 4rem;
+            }
+        }
+
+        .caso-grid {
+            display: grid;
+            gap: 2px;
+        }
+
+        .caso-item {
+            position: relative;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            .caso-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .caso-item.featured {
+                grid-column: span 2;
+                aspect-ratio: 21/9;
+            }
+        }
+
+        .caso-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .caso-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .caso-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0) 50%,
+                rgba(0,0,0,0.6) 100%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .caso-item:hover .caso-overlay {
+            opacity: 1;
+        }
+
+        .caso-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            color: white;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .caso-item:hover .caso-info {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .caso-info h4 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .caso-info span {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Silvia Lai Architetto Section */
+        .architetto {
+            background: var(--color-warm-gray);
+        }
+
+        .architetto-grid {
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .architetto-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+        }
+
+        .architetto-content h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .architetto-content p {
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .architetto-image {
+            aspect-ratio: 4/5;
+            overflow: hidden;
+        }
+
+        .architetto-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .services-list {
+            list-style: none;
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .services-list li {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--color-accent-dark);
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Chi Sono Section */
+        .chi-sono {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .chi-sono-grid {
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .chi-sono-grid {
+                grid-template-columns: 1fr 2fr;
+                gap: 5rem;
+            }
+        }
+
+        .chi-sono-image {
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 50%;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .chi-sono-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .chi-sono-content p {
+            margin-bottom: 1.5rem;
+            color: var(--color-text-light);
+        }
+
+        .chi-sono-content p:first-of-type {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--color-text);
+            font-style: italic;
+        }
+
+        /* CTA Section */
+        .cta {
+            text-align: center;
+            background: var(--color-text);
+            color: var(--color-bg);
+        }
+
+        .cta h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            margin: 0 auto 2.5rem;
+            opacity: 0.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid var(--color-accent);
+            color: var(--color-bg);
+            background: transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--color-accent);
+            color: var(--color-text);
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: var(--color-text);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-accent-dark);
+            border-color: var(--color-accent-dark);
+            color: var(--color-bg);
+        }
+
+        /* Contact Section */
+        .contatti {
+            display: grid;
+            gap: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .contatti {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+        }
+
+        .contatti-info h2 {
+            margin-bottom: 2rem;
+        }
+
+        .contatti-item {
+            margin-bottom: 2rem;
+        }
+
+        .contatti-item h4 {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .contatti-item p,
+        .contatti-item a {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--color-text);
+            text-decoration: none;
+        }
+
+        .contatti-item a:hover {
+            color: var(--color-accent-dark);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-links a:hover {
+            opacity: 1;
+        }
+
+        .contatti-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 1rem;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            border: 1px solid var(--color-warm-gray);
+            background: transparent;
+            color: var(--color-text);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: var(--color-text);
+            color: var(--color-bg);
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            opacity: 0.6;
+            margin: 0 auto;
+        }
+
+        footer a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Full-width image break */
+        .image-break {
+            width: 100%;
+            height: 60vh;
+            min-height: 400px;
+            overflow: hidden;
+        }
+
+        .image-break img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: var(--color-warm-gray);
+        }
+
+        .quote-section blockquote {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-style: italic;
+            font-weight: 300;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        .quote-section cite {
+            display: block;
+            margin-top: 2rem;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-style: normal;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+        }
+
+        /* Numbers/Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--color-warm-gray);
+        }
+
+        @media (min-width: 768px) {
+            .stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--color-accent-dark);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="#" class="nav-logo">Architettura Estetica</a>
+        <div class="nav-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-menu">
+            <a href="#vantaggi" onclick="closeMenu()">Vantaggi</a>
+            <a href="#casi-studio" onclick="closeMenu()">Casi Studio</a>
+            <a href="#architetto" onclick="closeMenu()">Ristrutturazioni</a>
+            <a href="#chi-sono" onclick="closeMenu()">Chi Sono</a>
+            <a href="#contatti" onclick="closeMenu()">Contatti</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1920&q=80" alt="Interior design elegante" class="hero-image">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Architettura<br>Estetica</h1>
+            <p class="hero-tagline">Valorizzare lo spazio senza ristrutturarlo</p>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scopri</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Vantaggi Section -->
+    <section class="vantaggi" id="vantaggi">
+        <span class="section-label">I Vantaggi</span>
+        <h2>Una terapia per lo spazio</h2>
+        <div class="vantaggi-grid">
+            <div class="vantaggio fade-in">
+                <h3>Senza Ristrutturazione</h3>
+                <p>Interventi mirati che valorizzano l'esistente. Niente macerie, niente stress, niente traslochi temporanei. Lo spazio si trasforma mentre continui a viverlo.</p>
+            </div>
+            <div class="vantaggio fade-in">
+                <h3>Tempi Rapidi</h3>
+                <p>Da 2 settimane a 1 mese per trasformazioni complete. Risultati immediati che cambiano la percezione dello spazio e il suo valore.</p>
+            </div>
+            <div class="vantaggio fade-in">
+                <h3>Budget Sostenibile</h3>
+                <p>Investimenti calibrati sugli obiettivi. Dai €2.500 per un monolocale ai €8.000 per appartamenti storici. Ogni euro è pensato per massimizzare il ritorno.</p>
+            </div>
+        </div>
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-number">10+</span>
+                <span class="stat-label">Anni di Esperienza</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Progetti Completati</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">2-4</span>
+                <span class="stat-label">Settimane Medie</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Clienti Soddisfatti</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Section -->
+    <section class="target" id="target">
+        <div class="target-grid">
+            <div class="target-item">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80" alt="Casa vacanza elegante">
+                <div class="target-content">
+                    <span class="section-label">Per Chi</span>
+                    <h3>Case Vacanza</h3>
+                    <p>Trasforma il tuo immobile in un'esperienza che gli ospiti vorranno rivivere. Ambienti curati significano recensioni migliori, prezzi più alti, ospiti rispettosi.</p>
+                </div>
+            </div>
+            <div class="target-item">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80" alt="Locale commerciale moderno">
+                <div class="target-content">
+                    <span class="section-label">Per Chi</span>
+                    <h3>Locali Commerciali</h3>
+                    <p>Lo spazio comunica i tuoi valori prima ancora delle parole. Studi professionali, showroom, negozi: l'ambiente diventa il tuo biglietto da visita.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <blockquote class="fade-in">
+            "Gli spazi belli hanno il potere di influenzare il nostro benessere, rigenerando gli occhi come la vista sull'oceano"
+        </blockquote>
+        <cite>— Silvia Lai</cite>
+    </section>
+
+    <!-- Intro Text -->
+    <section class="intro-text">
+        <h2 class="fade-in">Lo spazio comunica sempre</h2>
+        <p class="fade-in">Come la medicina estetica valorizza l'aspetto senza stravolgerlo, così l'Architettura Estetica esalta le caratteristiche distintive dello spazio attraverso interventi non invasivi, rapidi ed economicamente sostenibili.</p>
+        <p class="fade-in">Ogni progetto parte dall'ascolto: capire l'identità del luogo, le esigenze di chi lo abita o lo gestisce, e il messaggio che deve comunicare.</p>
+        <p class="highlight fade-in">Il risultato? Ambienti che fanno stare bene chi li vive.</p>
+    </section>
+
+    <!-- Image Break -->
+    <div class="image-break">
+        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=80" alt="Dettaglio interior design">
+    </div>
+
+    <!-- Casi Studio Section -->
+    <section class="casi-studio" id="casi-studio">
+        <div class="casi-studio-header">
+            <div>
+                <span class="section-label">Portfolio</span>
+                <h2>Casi Studio</h2>
+            </div>
+        </div>
+        <div class="caso-grid">
+            <div class="caso-item featured">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80" alt="Casa Civica - Appartamento storico">
+                <div class="caso-overlay"></div>
+                <div class="caso-info">
+                    <h4>Casa Civica</h4>
+                    <span>Appartamento storico vista mare · Alghero · €8.000</span>
+                </div>
+            </div>
+            <div class="caso-item">
+                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80" alt="Casa Dau - Mini appartamento">
+                <div class="caso-overlay"></div>
+                <div class="caso-info">
+                    <h4>Casa Dau</h4>
+                    <span>Mini appartamento · Sassari · €2.500</span>
+                </div>
+            </div>
+            <div class="caso-item">
+                <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1200&q=80" alt="Twin House">
+                <div class="caso-overlay"></div>
+                <div class="caso-info">
+                    <h4>Twin House</h4>
+                    <span>Bilocali gemelli · Alghero · €9.500</span>
+                </div>
+            </div>
+            <div class="caso-item">
+                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80" alt="Studio LP - Clinica odontoiatrica">
+                <div class="caso-overlay"></div>
+                <div class="caso-info">
+                    <h4>Studio LP</h4>
+                    <span>Clinica odontoiatrica · Sassari · €28.500</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Silvia Lai Architetto Section -->
+    <section class="architetto" id="architetto">
+        <div class="architetto-grid">
+            <div class="architetto-content fade-in">
+                <span class="section-label">Ristrutturazioni</span>
+                <h2>Silvia Lai<br>Architetto</h2>
+                <p>Quando lo spazio ha bisogno di più di una valorizzazione estetica. Ristrutturazioni complete di interni per residenze private e locali commerciali, con la stessa attenzione alla bellezza, all'identità e al benessere.</p>
+                <p>Progetti sartoriali dove ogni metro quadrato è pensato per chi lo vivrà. Dalla progettazione degli impianti alla selezione dei materiali, dalla direzione lavori all'interior design finale.</p>
+                <ul class="services-list">
+                    <li>Ristrutturazioni complete</li>
+                    <li>Progettazione interni</li>
+                    <li>Direzione lavori</li>
+                    <li>Arredi su misura</li>
+                    <li>Consulenza materiali</li>
+                </ul>
+            </div>
+            <div class="architetto-image fade-in">
+                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80" alt="Progetto ristrutturazione">
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Break -->
+    <div class="image-break">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80" alt="Villa ristrutturata">
+    </div>
+
+    <!-- Chi Sono Section -->
+    <section class="chi-sono" id="chi-sono">
+        <div class="chi-sono-grid">
+            <div class="chi-sono-image fade-in">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80" alt="Silvia Lai Architetto">
+            </div>
+            <div class="chi-sono-content fade-in">
+                <span class="section-label">Chi Sono</span>
+                <h2>Silvia Lai</h2>
+                <p>"Progettare un luogo significa vestirlo di significato, rendendo visibile la sua identità e raccontare una storia."</p>
+                <p>Architetto, nata a Sassari nel 1985. Laurea magistrale in Architettura al Dipartimento di Architettura, Design e Urbanistica di Alghero. Da oltre dieci anni mi occupo di ristrutturazioni di interni e interior design per residenze private e locali commerciali.</p>
+                <p>L'esperienza come host nel settore extra-alberghiero mi ha dato la conferma più evidente di quanto la cura dello spazio influenzi il comportamento delle persone: ambienti curati incentivano rispetto, apprezzamento e disponibilità a riconoscerne il valore.</p>
+                <p>Architettura Estetica nasce da qui: dalla volontà di offrire un servizio dedicato a chi vuole trasformare il proprio spazio senza affrontare una ristrutturazione.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2 class="fade-in">Trasforma il tuo spazio</h2>
+        <p class="fade-in">Inizia con un sopralluogo gratuito per capire insieme come valorizzare il tuo ambiente.</p>
+        <a href="#contatti" class="btn btn-primary">Richiedi un Sopralluogo</a>
+    </section>
+
+    <!-- Contatti Section -->
+    <section id="contatti">
+        <div class="contatti">
+            <div class="contatti-info fade-in">
+                <span class="section-label">Contatti</span>
+                <h2>Parliamo del tuo progetto</h2>
+                
+                <div class="contatti-item">
+                    <h4>Email</h4>
+                    <a href="mailto:info@architetturaestetica.it">info@architetturaestetica.it</a>
+                </div>
+                
+                <div class="contatti-item">
+                    <h4>Telefono</h4>
+                    <a href="tel:+393XX1234567">+39 3XX 123 4567</a>
+                </div>
+                
+                <div class="contatti-item">
+                    <h4>Dove Opero</h4>
+                    <p>Alghero · Sassari · Nord Sardegna</p>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.instagram.com/architettura_estetica" target="_blank" rel="noopener">Instagram</a>
+                    <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+            </div>
+            
+            <form class="contatti-form fade-in">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="type">Tipo di Progetto</label>
+                    <select id="type" name="type">
+                        <option value="">Seleziona...</option>
+                        <option value="casa-vacanza">Casa Vacanza</option>
+                        <option value="locale-commerciale">Locale Commerciale</option>
+                        <option value="residenza-privata">Residenza Privata</option>
+                        <option value="ristrutturazione">Ristrutturazione</option>
+                        <option value="altro">Altro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Messaggio</label>
+                    <textarea id="message" name="message" placeholder="Raccontami del tuo spazio..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Invia Richiesta</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Architettura Estetica · Silvia Lai Architetto · P.IVA XXXXXXXXXXX</p>
+        <p style="margin-top: 0.5rem;"><a href="#">Privacy Policy</a> · <a href="#">Cookie Policy</a></p>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.querySelector('.nav-toggle').classList.toggle('active');
+            document.querySelector('.nav-menu').classList.toggle('active');
+            document.body.style.overflow = document.querySelector('.nav-menu').classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMenu() {
+            document.querySelector('.nav-toggle').classList.remove('active');
+            document.querySelector('.nav-menu').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Fade in on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission (placeholder)
+        document.querySelector('.contatti-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Grazie per il tuo messaggio! Ti risponderò al più presto.');
+        });
+    </script>
+</body>
+</html>
