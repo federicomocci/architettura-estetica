@@ -160,6 +160,33 @@
             right: 0;
         }
 
+        .nav-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-close span {
+            position: absolute;
+            width: 24px;
+            height: 1px;
+            background: var(--black);
+        }
+
+        .nav-close span:first-child {
+            transform: rotate(45deg);
+        }
+
+        .nav-close span:last-child {
+            transform: rotate(-45deg);
+        }
+
         .nav-menu a {
             font-family: var(--serif);
             font-size: 1.8rem;
@@ -171,6 +198,7 @@
 
         @media (min-width: 900px) {
             .nav-toggle { display: none; }
+            .nav-close { display: none; }
             .nav-menu {
                 position: static;
                 width: auto;
@@ -756,6 +784,10 @@
             <span></span>
         </div>
         <div class="nav-menu">
+            <div class="nav-close" onclick="closeMenu()">
+                <span></span>
+                <span></span>
+            </div>
             <a href="#spazio-bellezza" onclick="closeMenu()">Manifesto</a>
             <a href="#casi-studio" onclick="closeMenu()">Progetti</a>
             <a href="#chi-sono" onclick="closeMenu()">Chi Sono</a>
