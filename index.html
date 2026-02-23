@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Architettura Estetica | Silvia Lai Architetto</title>
-    <meta name="description" content="Architettura Estetica - La terapia dello spazio. Valorizzazione degli ambienti senza ristrutturazione.">
+    <meta name="description" content="Architettura Estetica - La terapia dello spazio. Valorizzazione degli ambienti senza ristrutturazione. Silvia Lai Architetto, Alghero e Sassari.">
     
-    <!-- Fonts - Editorial Magazine Style -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Libre+Franklin:wght@300;400;500&display=swap" rel="stylesheet">
@@ -14,6 +13,7 @@
     <style>
         :root {
             --white: #FFFFFF;
+            --offwhite: #f8f7f5;
             --black: #1a1a1a;
             --gray: #666666;
             --gray-light: #999999;
@@ -22,15 +22,8 @@
             --sans: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: var(--serif);
@@ -41,993 +34,382 @@
             font-weight: 400;
         }
 
-        /* Typography */
-        h1 {
-            font-family: var(--serif);
-            font-size: clamp(2.8rem, 7vw, 5rem);
-            font-weight: 300;
-            letter-spacing: -0.02em;
-            line-height: 1.05;
-        }
-
-        h2 {
-            font-family: var(--serif);
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 400;
-            line-height: 1.15;
-            margin-bottom: 1rem;
-        }
-
-        h3 {
-            font-family: var(--serif);
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            font-weight: 400;
-            line-height: 1.2;
-        }
-
-        .article-title {
-            font-family: var(--serif);
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-label {
-            font-family: var(--sans);
-            font-size: 0.65rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--gray);
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        p {
-            margin-bottom: 1.5em;
-            text-align: justify;
-            hyphens: auto;
-        }
-
-        .lead {
-            font-size: 1.25rem;
-            line-height: 1.6;
-            font-weight: 400;
-            text-align: left;
-            margin-bottom: 2rem;
-        }
+        h1 { font-family: var(--serif); font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.05; }
+        h2 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.15; margin-bottom: 1rem; }
+        h3 { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 400; line-height: 1.2; }
+        .section-label { font-family: var(--sans); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); margin-bottom: 1rem; display: block; }
+        p { margin-bottom: 1.5em; text-align: justify; hyphens: auto; }
+        .lead { font-size: 1.25rem; line-height: 1.6; font-weight: 400; text-align: left; margin-bottom: 2rem; }
 
         /* Navigation */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            background: rgba(255,255,255,0.98);
-            border-bottom: 1px solid var(--line);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-family: var(--serif);
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--black);
-            text-decoration: none;
-            letter-spacing: 0.02em;
-        }
-
-        .nav-logo img {
-            height: 32px;
-        }
-
-        .nav-toggle {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        .nav-toggle span {
-            width: 20px;
-            height: 1px;
-            background: var(--black);
-            transition: 0.3s;
-        }
-
-        .nav-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            height: 100vh;
-            background: var(--white);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            transition: 0.4s;
-        }
-
-        .nav-menu.active {
-            right: 0;
-        }
-
-        .nav-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            width: 44px;
-            height: 44px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-close span {
-            position: absolute;
-            width: 24px;
-            height: 1px;
-            background: var(--black);
-        }
-
-        .nav-close span:first-child {
-            transform: rotate(45deg);
-        }
-
-        .nav-close span:last-child {
-            transform: rotate(-45deg);
-        }
-
-        .nav-menu a {
-            font-family: var(--serif);
-            font-size: 1.8rem;
-            font-weight: 300;
-            font-style: italic;
-            color: var(--black);
-            text-decoration: none;
-        }
-
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1rem 2rem; background: rgba(255,255,255,0.98); border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { text-decoration: none; }
+        .nav-logo img { height: 32px; }
+        .nav-toggle { display: flex; flex-direction: column; gap: 4px; cursor: pointer; padding: 8px; }
+        .nav-toggle span { width: 20px; height: 1px; background: var(--black); transition: 0.3s; }
+        .nav-menu { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: var(--white); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem; transition: 0.4s; z-index: 1001; }
+        .nav-menu.active { right: 0; }
+        .nav-close { position: absolute; top: 1.5rem; right: 1.5rem; width: 44px; height: 44px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .nav-close span { position: absolute; width: 24px; height: 1px; background: var(--black); }
+        .nav-close span:first-child { transform: rotate(45deg); }
+        .nav-close span:last-child { transform: rotate(-45deg); }
+        .nav-menu a { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; font-style: italic; color: var(--black); text-decoration: none; }
         @media (min-width: 900px) {
             .nav-toggle { display: none; }
             .nav-close { display: none; }
-            .nav-menu {
-                position: static;
-                width: auto;
-                height: auto;
-                flex-direction: row;
-                gap: 2.5rem;
-            }
-            .nav-menu a {
-                font-family: var(--sans);
-                font-size: 0.7rem;
-                font-weight: 400;
-                font-style: normal;
-                letter-spacing: 0.08em;
-                text-transform: uppercase;
-            }
-            .nav-menu a:hover {
-                color: var(--gray);
-            }
+            .nav-menu { position: static; width: auto; height: auto; flex-direction: row; gap: 2.5rem; }
+            .nav-menu a { font-family: var(--sans); font-size: 0.7rem; font-weight: 400; font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; }
+            .nav-menu a:hover { color: var(--gray); }
         }
 
-        /* Hero - Magazine Cover */
-        .hero {
-            height: 100vh;
-            min-height: 700px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        /* Hero */
+        .hero { height: 100vh; min-height: 700px; position: relative; display: flex; align-items: center; justify-content: center; }
+        .hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .hero::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
+        .hero-content { position: relative; z-index: 2; text-align: center; color: var(--white); padding: 2rem; }
+        .hero-content h1 { margin-bottom: 1rem; font-weight: 300; }
+        .hero-subtitle { font-family: var(--serif); font-size: clamp(1.1rem, 3vw, 1.4rem); font-style: italic; font-weight: 300; opacity: 0.9; margin-bottom: 0.5rem; }
+        .hero-subtext { font-family: var(--sans); font-size: 0.8rem; letter-spacing: 0.05em; opacity: 0.75; margin-bottom: 2.5rem; }
+        .hero-cta { display: inline-block; padding: 1rem 2.5rem; font-family: var(--sans); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid var(--white); color: var(--white); text-decoration: none; transition: 0.3s; }
+        .hero-cta:hover { background: var(--white); color: var(--black); }
 
-        .hero-image {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        /* Section */
+        .section { padding: 6rem 2rem; border-bottom: 1px solid var(--line); }
+        @media (min-width: 768px) { .section { padding: 8rem 4rem; } }
+        .section-container { max-width: 720px; margin: 0 auto; }
+        .section-wide { max-width: 1100px; margin: 0 auto; }
+        .section-header { margin-bottom: 3rem; }
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.35);
-        }
+        /* Scenarios */
+        .scenarios { display: grid; gap: 1.5rem; margin-top: 2.5rem; }
+        .scenario { padding: 2rem; background: var(--offwhite); font-family: var(--serif); font-size: 1.05rem; font-style: italic; line-height: 1.6; text-align: left; }
+        .scenario-closing { margin-top: 3rem; font-size: 1.3rem; font-weight: 500; text-align: left; }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: var(--white);
-            padding: 2rem;
-        }
+        /* Pills */
+        .pills { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem; }
+        .pill { padding: 0.7rem 1.5rem; font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--line); }
 
-        .hero-content h1 {
-            margin-bottom: 1rem;
-            font-weight: 300;
-        }
+        /* Cases */
+        .cases { padding: 6rem 2rem; }
+        .cases-header { max-width: 1200px; margin: 0 auto 4rem; }
+        .case-study { max-width: 1100px; margin: 0 auto 5rem; border-bottom: 1px solid var(--line); padding-bottom: 4rem; }
+        .case-study:last-child { border-bottom: none; }
+        .case-study h3 { margin-bottom: 0.5rem; }
+        .case-study-meta { font-family: var(--sans); font-size: 0.75rem; color: var(--gray); letter-spacing: 0.03em; margin-bottom: 1.5rem; }
+        .case-study-description { max-width: 700px; margin-bottom: 2.5rem; text-align: left; }
+        .case-study-images { display: grid; gap: 2px; }
+        @media (min-width: 768px) { .case-study-images { grid-template-columns: 1fr 1fr; } }
+        .case-study-images img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+        .case-study-images img.wide { grid-column: 1 / -1; aspect-ratio: 21/9; }
 
-        .hero-subtitle {
-            font-family: var(--serif);
-            font-size: 1.3rem;
-            font-style: italic;
-            font-weight: 300;
-            opacity: 0.9;
-        }
-
-        /* Article Section */
-        .article {
-            padding: 6rem 2rem;
-            border-bottom: 1px solid var(--line);
-        }
-
-        @media (min-width: 768px) {
-            .article {
-                padding: 8rem 4rem;
-            }
-        }
-
-        .article-container {
-            max-width: 720px;
-            margin: 0 auto;
-        }
-
-        .article-header {
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        /* Two Column Text */
-        .two-columns {
-            columns: 1;
-            column-gap: 3rem;
-        }
-
-        @media (min-width: 900px) {
-            .two-columns {
-                columns: 2;
-            }
-        }
-
-        /* Pull Quote */
-        .pull-quote {
-            padding: 4rem 2rem;
-            text-align: center;
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
-            background: #fafafa;
-        }
-
-        .pull-quote blockquote {
-            font-family: var(--serif);
-            font-size: clamp(1.5rem, 4vw, 2.2rem);
-            font-style: italic;
-            font-weight: 300;
-            line-height: 1.45;
-            max-width: 900px;
-            margin: 0 auto;
-            color: var(--black);
-        }
-
-        /* Full Image */
-        .full-image {
-            width: 100%;
-            height: 65vh;
-            min-height: 400px;
-            position: relative;
-        }
-
-        .full-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .full-image figcaption {
-            position: absolute;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            font-family: var(--sans);
-            font-size: 0.7rem;
-            color: white;
-            background: rgba(0,0,0,0.5);
-            padding: 0.5rem 0.8rem;
-        }
-
-        /* Target Sections */
-        .targets {
-            display: grid;
-            grid-template-columns: 1fr;
-        }
-
-        @media (min-width: 768px) {
-            .targets {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .target-item {
-            position: relative;
-            height: 80vh;
-            min-height: 500px;
-            overflow: hidden;
-        }
-
-        .target-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s ease;
-        }
-
-        .target-item:hover img {
-            transform: scale(1.03);
-        }
-
-        .target-item::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.7) 100%);
-        }
-
-        .target-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 3rem;
-            color: white;
-            z-index: 2;
-        }
-
-        .target-content .section-label {
-            color: rgba(255,255,255,0.7);
-        }
-
-        .target-content h3 {
-            margin-bottom: 1rem;
-        }
-
-        .target-content p {
-            font-size: 0.95rem;
-            text-align: left;
-            opacity: 0.9;
-            max-width: 400px;
-            margin: 0;
-        }
-
-        /* Case Studies */
-        .cases {
-            padding: 6rem 2rem;
-        }
-
-        .cases-header {
-            max-width: 1200px;
-            margin: 0 auto 4rem;
-        }
-
-        .cases-grid {
-            display: grid;
-            gap: 2px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        @media (min-width: 768px) {
-            .cases-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .case-item.wide {
-                grid-column: span 2;
-            }
-        }
-
-        .case-item {
-            position: relative;
-            aspect-ratio: 4/3;
-            overflow: hidden;
-        }
-
-        .case-item.wide {
-            aspect-ratio: 21/9;
-        }
-
-        .case-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .case-item:hover img {
-            transform: scale(1.04);
-        }
-
-        .case-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            opacity: 0;
-            transition: opacity 0.4s;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 2rem;
-            color: white;
-        }
-
-        .case-item:hover .case-overlay {
-            opacity: 1;
-        }
-
-        .case-overlay h4 {
-            font-family: var(--serif);
-            font-size: 1.6rem;
-            font-weight: 400;
-            margin-bottom: 0.5rem;
-        }
-
-        .case-overlay span {
-            font-family: var(--sans);
-            font-size: 0.75rem;
-            letter-spacing: 0.03em;
-            opacity: 0.85;
-        }
+        /* Method */
+        .method-steps { display: grid; gap: 3rem; margin-top: 3rem; }
+        @media (min-width: 768px) { .method-steps { grid-template-columns: 1fr 1fr; gap: 3rem 4rem; } }
+        .method-step-number { font-family: var(--serif); font-size: 3rem; font-weight: 300; color: var(--line); line-height: 1; margin-bottom: 0.8rem; }
+        .method-step h3 { font-size: 1.3rem; margin-bottom: 0.8rem; }
+        .method-step p { font-size: 0.95rem; text-align: left; color: var(--gray); margin: 0; }
 
         /* Chi Sono */
-        .chi-sono {
-            padding: 6rem 2rem;
-            border-bottom: 1px solid var(--line);
-        }
+        .chi-sono { padding: 6rem 2rem; border-bottom: 1px solid var(--line); }
+        .chi-sono-grid { display: grid; gap: 4rem; max-width: 1100px; margin: 0 auto; }
+        @media (min-width: 900px) { .chi-sono-grid { grid-template-columns: 1fr 1.6fr; gap: 5rem; align-items: start; } }
+        .chi-sono-image { aspect-ratio: 3/4; overflow: hidden; }
+        .chi-sono-image img { width: 100%; height: 100%; object-fit: cover; }
+        .chi-sono-text p { text-align: left; }
 
-        .chi-sono-grid {
-            display: grid;
-            gap: 4rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
+        /* Target Cards */
+        .target-cards { display: grid; gap: 2rem; margin-top: 3rem; }
+        @media (min-width: 768px) { .target-cards { grid-template-columns: 1fr 1fr 1fr; } }
+        .target-card { padding: 2.5rem 2rem; border: 1px solid var(--line); }
+        .target-card-primary { border-color: var(--black); }
+        .target-card h3 { font-size: 1.4rem; margin-bottom: 1rem; }
+        .target-card p { font-size: 0.95rem; text-align: left; color: var(--gray); margin: 0; }
 
-        @media (min-width: 900px) {
-            .chi-sono-grid {
-                grid-template-columns: 1fr 1.6fr;
-                gap: 5rem;
-                align-items: start;
-            }
-        }
-
-        .chi-sono-image {
-            aspect-ratio: 3/4;
-            overflow: hidden;
-        }
-
-        .chi-sono-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .chi-sono-text .lead {
-            font-style: italic;
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        /* Manifesto Box */
-        .manifesto-box {
-            background: #f5f5f5;
-            padding: 5rem 2rem;
-            text-align: center;
-        }
-
-        .manifesto-box-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .manifesto-box h2 {
-            font-size: clamp(1.6rem, 4vw, 2.2rem);
-            font-weight: 400;
-            font-style: italic;
-            line-height: 1.4;
-            margin-bottom: 2rem;
-        }
-
-        .manifesto-box p {
-            text-align: center;
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
+        /* Manifesto */
+        .manifesto-box { background: var(--offwhite); padding: 5rem 2rem; }
+        .manifesto-box-content { max-width: 800px; margin: 0 auto; }
+        .manifesto-box h2 { font-style: italic; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 400; line-height: 1.4; margin-bottom: 2rem; }
+        .manifesto-box p { color: var(--gray); max-width: 650px; }
 
         /* Ristrutturazioni */
-        .ristrutturazioni {
-            padding: 6rem 2rem;
-            background: var(--white);
-        }
-
-        .ristrutturazioni-grid {
-            display: grid;
-            gap: 4rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        @media (min-width: 900px) {
-            .ristrutturazioni-grid {
-                grid-template-columns: 1.4fr 1fr;
-                gap: 5rem;
-                align-items: center;
-            }
-        }
-
-        .ristrutturazioni-image {
-            aspect-ratio: 4/3;
-            overflow: hidden;
-        }
-
-        .ristrutturazioni-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .services-list {
-            list-style: none;
-            margin-top: 2.5rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--line);
-        }
-
-        .services-list li {
-            font-family: var(--sans);
-            font-size: 0.8rem;
-            letter-spacing: 0.03em;
-            padding: 0.6rem 0;
-            border-bottom: 1px solid var(--line);
-        }
+        .ristrutturazioni-content { max-width: 720px; margin: 0 auto; }
 
         /* Contatti */
-        .contatti {
-            padding: 6rem 2rem;
-            border-top: 1px solid var(--line);
-        }
-
-        .contatti-grid {
-            display: grid;
-            gap: 4rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        @media (min-width: 768px) {
-            .contatti-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 6rem;
-            }
-        }
-
-        .contatto-item {
-            margin-bottom: 2rem;
-        }
-
-        .contatto-item .section-label {
-            margin-bottom: 0.3rem;
-        }
-
-        .contatto-item a,
-        .contatto-item p {
-            font-family: var(--serif);
-            font-size: 1.15rem;
-            color: var(--black);
-            text-decoration: none;
-            margin: 0;
-        }
-
-        .contatto-item a:hover {
-            color: var(--gray);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--line);
-        }
-
-        .social-links a {
-            font-family: var(--sans);
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--black);
-            text-decoration: none;
-        }
+        .contatti { padding: 6rem 2rem; border-top: 1px solid var(--line); }
+        .contatti-grid { display: grid; gap: 4rem; max-width: 1000px; margin: 0 auto; }
+        @media (min-width: 768px) { .contatti-grid { grid-template-columns: 1fr 1fr; gap: 6rem; } }
+        .contatto-item { margin-bottom: 2rem; }
+        .contatto-item .section-label { margin-bottom: 0.3rem; }
+        .contatto-item a, .contatto-item p { font-family: var(--serif); font-size: 1.15rem; color: var(--black); text-decoration: none; margin: 0; }
+        .contatto-item a:hover { color: var(--gray); }
+        .social-links { display: flex; gap: 1.5rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+        .social-links a { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); text-decoration: none; }
 
         /* Form */
-        .form-group {
-            margin-bottom: 1.8rem;
-        }
+        .form-group { margin-bottom: 1.8rem; }
+        .form-group label { font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); display: block; margin-bottom: 0.5rem; }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.9rem 0; font-family: var(--serif); font-size: 1rem; border: none; border-bottom: 1px solid var(--line); background: transparent; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--black); }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+        .btn { display: inline-block; padding: 1rem 2.5rem; font-family: var(--sans); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid var(--black); background: transparent; color: var(--black); cursor: pointer; transition: 0.3s; }
+        .btn:hover { background: var(--black); color: var(--white); }
 
-        .form-group label {
-            font-family: var(--sans);
-            font-size: 0.65rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--gray);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.9rem 0;
-            font-family: var(--serif);
-            font-size: 1rem;
-            border: none;
-            border-bottom: 1px solid var(--line);
-            background: transparent;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--black);
-        }
-
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            font-family: var(--sans);
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            border: 1px solid var(--black);
-            background: transparent;
-            color: var(--black);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: var(--black);
-            color: var(--white);
-        }
+        /* Full Image */
+        .full-image { width: 100%; height: 55vh; min-height: 350px; position: relative; }
+        .full-image img { width: 100%; height: 100%; object-fit: cover; }
+        .full-image figcaption { position: absolute; bottom: 1.5rem; right: 1.5rem; font-family: var(--sans); font-size: 0.7rem; color: white; background: rgba(0,0,0,0.5); padding: 0.5rem 0.8rem; }
 
         /* Footer */
-        footer {
-            padding: 3rem 2rem;
-            border-top: 1px solid var(--line);
-            text-align: center;
-        }
+        footer { padding: 3rem 2rem; border-top: 1px solid var(--line); text-align: center; }
+        footer p { font-family: var(--sans); font-size: 0.75rem; color: var(--gray); margin: 0; letter-spacing: 0.02em; }
 
-        footer p {
-            font-family: var(--sans);
-            font-size: 0.75rem;
-            color: var(--gray);
-            margin: 0;
-            letter-spacing: 0.02em;
-        }
+        /* WhatsApp */
+        .whatsapp-btn { position: fixed; bottom: 2rem; right: 2rem; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; box-shadow: 0 4px 15px rgba(37,211,102,0.4); z-index: 999; transition: transform 0.3s, box-shadow 0.3s; }
+        .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(37,211,102,0.5); }
+        .whatsapp-btn svg { width: 32px; height: 32px; }
 
-        /* WhatsApp Button */
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            z-index: 999;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-        }
-
-        .whatsapp-btn svg {
-            width: 32px;
-            height: 32px;
-        }
-
-        /* Fade Animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(25px);
-            transition: all 0.7s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* Fade */
+        .fade-in { opacity: 0; transform: translateY(25px); transition: all 0.7s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+
+    <!-- NAVIGATION -->
     <nav class="nav">
         <a href="#" class="nav-logo">
             <img src="assets/images/logo/LOGO ORIZ.jpg" alt="Architettura Estetica">
         </a>
         <div class="nav-toggle" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </div>
         <div class="nav-menu">
-            <div class="nav-close" onclick="closeMenu()">
-                <span></span>
-                <span></span>
-            </div>
-            <a href="#spazio-bellezza" onclick="closeMenu()">Manifesto</a>
-            <a href="#casi-studio" onclick="closeMenu()">Progetti</a>
-            <a href="#chi-sono" onclick="closeMenu()">Chi Sono</a>
-            <a href="#ristrutturazioni" onclick="closeMenu()">Ristrutturazioni</a>
+            <div class="nav-close" onclick="closeMenu()"><span></span><span></span></div>
+            <a href="#cos-e" onclick="closeMenu()">Cos'è</a>
+            <a href="#trasformazioni" onclick="closeMenu()">Trasformazioni</a>
+            <a href="#metodo" onclick="closeMenu()">Come funziona</a>
+            <a href="#chi-sono" onclick="closeMenu()">Chi sono</a>
             <a href="#contatti" onclick="closeMenu()">Contatti</a>
         </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- 1. HERO -->
     <header class="hero">
-        <img src="assets/images/hero/hero.jpg" alt="Architettura Estetica" class="hero-image">
+        <img src="assets/images/casa-civica/F_Mocci_04-HDR-1 copia.jpg" alt="Architettura Estetica" class="hero-image">
         <div class="hero-content">
             <h1>Architettura Estetica</h1>
             <p class="hero-subtitle">La terapia dello spazio</p>
+            <p class="hero-subtext">Valorizzo ambienti domestici e commerciali senza ristrutturare</p>
+            <a href="#contatti" class="hero-cta">Parliamo del tuo spazio</a>
         </div>
     </header>
 
-    <!-- Articolo: Spazio e Bellezza -->
-    <article class="article" id="spazio-bellezza">
-        <div class="article-container">
-            <header class="article-header">
-                <span class="section-label">Architettura Estetica</span>
-                <h2 class="article-title">Spazio e bellezza</h2>
-            </header>
-            
-            <p class="lead fade-in">
-                Gli spazi che abitiamo parlano di noi. Raccontano chi siamo, cosa facciamo e come viviamo. Sia che ci impegniamo ad allestirli e a curarli per esprimere il nostro stile, sia che non lo facciamo.
-            </p>
-            
-            <div class="two-columns fade-in">
-                <p>
-                    Lo spazio comunica sempre. Come nella comunicazione umana "non si può non comunicare", anche non personalizzare uno spazio o non prendersene cura comunica agli altri qualcosa di quel luogo e quindi qualcosa di noi.
-                </p>
-                <p>
-                    Allo stesso modo, anche gli ambienti destinati all'ospitalità o quelli commerciali, trasmettono valori e identità. Questi spazi diventano il volto del nostro brand, comunicando ai clienti—o agli ospiti—chi siamo e cosa offriamo, in maniera immediata e spesso più incisiva di qualsiasi messaggio promozionale.
-                </p>
-                <p>
-                    Un locale ben progettato, un appartamento per affitti brevi curato nei dettagli o un ufficio organizzato con coerenza non sono solo belli da vedere: raccontano il carattere dell'attività, i suoi valori ma, sopra ogni cosa, l'importanza che attribuiamo all'esperienza di chi frequenta quello spazio.
-                </p>
-                <p>
-                    Curare l'ambiente significa prendersi cura di sé stessi e degli altri, creando condizioni che facilitino comportamenti positivi. Non è soltanto una questione estetica, ma di salute e serenità interiore, così come "vestire" un ambiente in maniera attenta e coerente non si riduce a un semplice atto decorativo ma diventa un investimento in qualità della vita.
-                </p>
+    <!-- 2. IL PROBLEMA -->
+    <section class="section" id="problema">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">Il punto di partenza</span>
+                <h2>Il tuo spazio non ti rappresenta più?</h2>
+            </div>
+            <div class="scenarios fade-in">
+                <div class="scenario">La casa è ancora solida, tutto funziona. Ma gli ambienti sembrano invecchiati, pesanti, non ti ci riconosci più. Vorresti cambiare, ma l'idea di una ristrutturazione ti blocca.</div>
+                <div class="scenario">Hai un appartamento da mettere a rendita con gli affitti brevi. Così com'è non attira, non si distingue, non giustifica il prezzo che vorresti. Sai che potrebbe rendere di più, ma non sai da dove partire.</div>
+                <div class="scenario">Il tuo studio, il tuo locale, il tuo spazio di lavoro non comunica chi sei. I clienti entrano e non percepiscono la cura, l'identità, la qualità di quello che offri.</div>
+            </div>
+            <p class="scenario-closing fade-in">Non serve abbattere muri. Serve un progetto.</p>
+        </div>
+    </section>
+
+    <!-- 3. LA SOLUZIONE -->
+    <section class="section" id="cos-e">
+        <div class="section-container">
+            <div class="section-header fade-in">
+                <span class="section-label">La risposta</span>
+                <h2>Cos'è Architettura Estetica</h2>
+            </div>
+            <div class="fade-in">
+                <p class="lead">Come la medicina estetica migliora l'aspetto senza chirurgia, l'Architettura Estetica valorizza lo spazio senza demolizioni.</p>
+                <p>Interventi mirati, rapidi, non invasivi: luce, colore, disposizione, materiali, arredi. Non impongo uno stile — costruisco un'identità. Ogni spazio è diverso, come chi lo abita o lo gestisce. E ogni intervento è disegnato su misura, con la competenza tecnica di un architetto e la sensibilità di chi conosce l'impatto dello spazio sulle persone.</p>
+            </div>
+            <div class="pills fade-in">
+                <span class="pill">Niente cantiere</span>
+                <span class="pill">Tempi brevi</span>
+                <span class="pill">Budget contenuto</span>
+                <span class="pill">Risultati concreti</span>
             </div>
         </div>
-    </article>
+    </section>
 
-    <!-- Full Image -->
+    <!-- Visual break -->
     <figure class="full-image">
-        <img src="assets/images/casa-civica/F_Mocci_137-HDR.jpg" alt="Interior design - Casa Civica">
-        <figcaption>Casa Civica, Alghero</figcaption>
+        <img src="assets/images/twin-house/Federico_1_20.JPG" alt="Twin House - Soggiorno">
+        <figcaption>Twin House, Alghero</figcaption>
     </figure>
 
-    <!-- Quote -->
-    <section class="pull-quote">
-        <blockquote class="fade-in">
-            "Gli spazi belli hanno il potere di influenzare il nostro benessere psicofisico, rigenerando gli occhi come la vista sull'oceano, ci fanno sentire importanti perché si prendono cura di noi assolvendo alla nostra innata e primordiale ricerca della bellezza."
-        </blockquote>
-    </section>
-
-    <!-- Articolo: La Terapia dello Spazio -->
-    <article class="article">
-        <div class="article-container">
-            <header class="article-header">
-                <span class="section-label">Architettura Estetica</span>
-                <h2 class="article-title">La terapia dello spazio</h2>
-            </header>
-            
-            <p class="lead fade-in">
-                Negli anni Settanta, in Francia, nasceva la medicina estetica, una disciplina studiata con l'intento di proporre interventi rapidi, non invasivi e mirati a migliorare l'aspetto fisico, senza ricorrere agli interventi tipici della chirurgia plastica.
-            </p>
-            
-            <div class="two-columns fade-in">
-                <p>
-                    L'obiettivo era semplice ma di grande impatto: offrire un approccio di "cura" capace di valorizzare l'aspetto delle persone senza stravolgerlo, riducendo al minimo stress e tempi di recupero.
-                </p>
-                <p>
-                    Come la medicina estetica è una disciplina orientata al mantenimento e al miglioramento della bellezza, senza trasformazioni radicali, valorizzando i punti di forza e armonizzando gli inestetismi, così anche l'Architettura Estetica mira a esaltare le caratteristiche distintive dello spazio, individuando e armonizzando le imperfezioni, attraverso interventi non invasivi, rapidi ed economicamente gestibili rispetto ad una ristrutturazione.
-                </p>
-                <p>
-                    Architettura Estetica è la risposta che ho trovato a un'esigenza specifica: migliorare lo spazio senza ristrutturarlo. Un servizio pensato per valorizzare le caratteristiche distintive degli ambienti attraverso interventi non invasivi e sostenibili.
-                </p>
-                <p>
-                    Una vera e propria terapia per lo spazio costituita da trattamenti di bellezza volti al ringiovanimento e alla valorizzazione degli ambienti domestici e commerciali.
-                </p>
-            </div>
-        </div>
-    </article>
-
-    <!-- Target Sections -->
-    <div class="targets">
-        <div class="target-item">
-            <img src="assets/images/casa-civica/F_Mocci_101-HDR-1.jpg" alt="Case Vacanza">
-            <div class="target-content">
-                <span class="section-label">Per chi</span>
-                <h3>Case Vacanza</h3>
-                <p>Ambienti curati non solo migliorano l'esperienza degli ospiti, ma aumentano la loro disponibilità a pagare un prezzo superiore rispetto a immobili con caratteristiche simili ma meno curati.</p>
-            </div>
-        </div>
-        <div class="target-item">
-            <img src="assets/images/studio-lp/DSC_0092.jpg" alt="Locali Commerciali">
-            <div class="target-content">
-                <span class="section-label">Per chi</span>
-                <h3>Locali Commerciali</h3>
-                <p>Lo spazio deve raccontare la filosofia e i valori dell'azienda. Un progetto ben strutturato crea un'esperienza significativa e memorabile per chi lo frequenta.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Manifesto Box -->
-    <section class="manifesto-box">
-        <div class="manifesto-box-content fade-in">
-            <h2>"Architettura Estetica è la risposta che ho trovato a un'esigenza specifica: migliorare lo spazio senza ristrutturarlo."</h2>
-            <p>Un servizio pensato per valorizzare le caratteristiche distintive degli ambienti attraverso interventi non invasivi e sostenibili. Niente macerie, niente stress, niente traslochi temporanei.</p>
-        </div>
-    </section>
-
-    <!-- Casi Studio -->
-    <section class="cases" id="casi-studio">
-        <div class="cases-header">
+    <!-- 4. CASI STUDIO -->
+    <section class="cases" id="trasformazioni">
+        <div class="cases-header fade-in">
             <span class="section-label">Portfolio</span>
-            <h2>Casi Studio</h2>
+            <h2>Trasformazioni</h2>
         </div>
-        <div class="cases-grid">
-            <div class="case-item wide">
-                <img src="assets/images/casa-civica/F_Mocci_04-HDR-1 copia.jpg" alt="Casa Civica">
-                <div class="case-overlay">
-                    <h4>Casa Civica</h4>
-                    <span>Appartamento storico vista mare · Alghero · ~100 mq · Budget ~€8.000</span>
-                </div>
+
+        <div class="case-study fade-in">
+            <h3>Casa Dau</h3>
+            <p class="case-study-meta">Monolocale · Sassari · ~40 mq · Budget ~€2.500 · Tempo: &lt;2 settimane</p>
+            <p class="case-study-description">Un monolocale al sesto piano, con luce e terrazza come grandi potenzialità, ma privo di identità. Arredi accostati senza criterio, spazio soffocato, nessuna coerenza. Con un budget minimo e arredi di seconda mano recuperati con cura, l'appartamento ha ritrovato un'identità calda e accogliente, pronto per gli affitti brevi.</p>
+            <div class="case-study-images">
+                <img src="assets/images/casa-dau/_15A5561-Modifica.JPG" alt="Casa Dau - Soggiorno">
+                <img src="assets/images/casa-dau/_15A5569-Modifica.JPG" alt="Casa Dau - Cucina">
             </div>
-            <div class="case-item">
-                <img src="assets/images/casa-dau/_15A5561-Modifica.JPG" alt="Casa Dau">
-                <div class="case-overlay">
-                    <h4>Casa Dau</h4>
-                    <span>Mini appartamento vista cielo · Sassari · ~40 mq · Budget ~€2.500</span>
-                </div>
+        </div>
+
+        <div class="case-study fade-in">
+            <h3>Casa Civica</h3>
+            <p class="case-study-meta">Appartamento storico vista mare · Alghero, Piazza Civica · ~100 mq · Budget ~€8.000 · Tempo: &lt;1 mese</p>
+            <p class="case-study-description">Un appartamento nobile nel cuore del centro storico di Alghero, con volte alte, finiture di pregio e vista mare. La bellezza c'era già — serviva restituirle luce. Nuovi arredi in dialogo con l'architettura storica, sostituzione della vasca con doccia walk-in, recupero di elementi esistenti. La casa dei proprietari è diventata un'esperienza per gli ospiti, senza tradirne la storia.</p>
+            <div class="case-study-images">
+                <img src="assets/images/casa-civica/F_Mocci_04-HDR-1 copia.jpg" alt="Casa Civica - Salone" class="wide">
+                <img src="assets/images/casa-civica/F_Mocci_101-HDR-1.jpg" alt="Casa Civica - Cucina">
             </div>
-            <div class="case-item">
-                <img src="assets/images/twin-house/Federico_1_01.JPG" alt="Twin House">
-                <div class="case-overlay">
-                    <h4>Twin House</h4>
-                    <span>Bilocali gemelli anni '60 · Alghero · ~83 mq · Budget ~€9.500</span>
-                </div>
+        </div>
+
+        <div class="case-study fade-in">
+            <h3>Twin House</h3>
+            <p class="case-study-meta">Due bilocali gemelli anni '60 · Alghero · ~83 mq totali · Budget ~€9.500 · Tempo: &lt;1 mese</p>
+            <p class="case-study-description">Un grande appartamento in un condominio storico del 1963, con pavimenti originali in marmette di graniglia e soffitti alti tre metri. Diviso in due bilocali gemelli per gli affitti brevi, ogni spazio ha trovato la propria identità — uno vintage-pop con il divano giallo acido, l'altro luminoso e raccolto con la pietra naturale in cucina.</p>
+            <div class="case-study-images">
+                <img src="assets/images/twin-house/Federico_1_20.JPG" alt="Twin House - Soggiorno">
+                <img src="assets/images/twin-house/Federico_1_10.JPG" alt="Twin House - Camera">
             </div>
-            <div class="case-item wide">
-                <img src="assets/images/studio-lp/DSC_0129-2.jpg" alt="Studio LP">
-                <div class="case-overlay">
-                    <h4>Studio LP</h4>
-                    <span>Clinica odontoiatrica · Sassari · ~220 mq · Budget ~€28.500</span>
+        </div>
+
+        <div class="case-study fade-in">
+            <h3>Studio LP</h3>
+            <p class="case-study-meta">Clinica odontoiatrica · Sassari · ~220 mq · Budget ~€28.500 · Tempo: &lt;1 mese</p>
+            <p class="case-study-description">Una clinica con oltre trent'anni di storia che doveva rinnovare la propria immagine senza interrompere l'attività con i pazienti. Zero demolizioni, zero macerie: pavimento sovrapposto, porte laccate, sala d'attesa riprogettata da zero. Lo studio dentistico è diventato un luogo dove i pazienti — compresi i bambini — si sentono accolti come a casa.</p>
+            <div class="case-study-images">
+                <img src="assets/images/studio-lp/DSC_0129-2.jpg" alt="Studio LP - Sala d'attesa" class="wide">
+                <img src="assets/images/studio-lp/DSC_0092.jpg" alt="Studio LP - Silvia al lavoro">
+                <img src="assets/images/studio-lp/DSC_0143-2.jpg" alt="Studio LP - Dettaglio">
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. IL METODO -->
+    <section class="section" id="metodo">
+        <div class="section-wide">
+            <div class="section-header fade-in">
+                <span class="section-label">Il percorso</span>
+                <h2>Come funziona</h2>
+            </div>
+            <div class="method-steps fade-in">
+                <div class="method-step">
+                    <div class="method-step-number">01</div>
+                    <h3>Sopralluogo e ascolto</h3>
+                    <p>Osservo lo spazio, ascolto le tue esigenze, capisco gli obiettivi. Ogni ambiente ha le sue potenzialità — il primo passo è leggerle.</p>
+                </div>
+                <div class="method-step">
+                    <div class="method-step-number">02</div>
+                    <h3>Diagnosi e proposta</h3>
+                    <p>Identifico cosa togliere, cosa valorizzare, cosa aggiungere. Ti presento un progetto con costi e tempi chiari, senza sorprese.</p>
+                </div>
+                <div class="method-step">
+                    <div class="method-step-number">03</div>
+                    <h3>Intervento</h3>
+                    <p>Coordino tutto io: pitture, arredi, illuminazione, allestimento. Tu non devi pensare a nulla — gestisco fornitori, imprevisti e tempistiche.</p>
+                </div>
+                <div class="method-step">
+                    <div class="method-step-number">04</div>
+                    <h3>Il tuo spazio, trasformato</h3>
+                    <p>Risultato visibile, funzionale, che racconta chi sei. Uno spazio che le persone scelgono, rispettano, ricordano.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Full Image -->
-    <figure class="full-image">
-        <img src="assets/images/casa-dau/_15A5626-Modifica.JPG" alt="Casa Dau - Interior">
-        <figcaption>Casa Dau, Sassari</figcaption>
-    </figure>
-
-    <!-- Chi Sono -->
+    <!-- 6. CHI SONO -->
     <section class="chi-sono" id="chi-sono">
         <div class="chi-sono-grid">
             <div class="chi-sono-image fade-in">
-                <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=800&q=80" alt="Silvia Lai">
+                <img src="assets/images/studio-lp/DSC_0092.jpg" alt="Silvia Lai">
             </div>
             <div class="chi-sono-text fade-in">
                 <span class="section-label">Chi sono</span>
                 <h2>Silvia Lai</h2>
-                <p class="lead">"Progettare un luogo significa vestirlo di significato, rendendo visibile la sua identità e, di conseguenza, raccontare una storia."</p>
-                <p>
-                    Mi chiamo Silvia Lai e sono un architetto. Nasco a Sassari nel 1985, conseguo la Laurea magistrale in Architettura al Dipartimento di Architettura, Design e Urbanistica di Alghero. Dopo tirocini, Erasmus ed esperienze all'estero decido di rimanere qui, ad Alghero, vicino al mare.
-                </p>
-                <p>
-                    Da oltre dieci anni mi occupo di ristrutturazioni di interni e interior design per residenze private e locali commerciali. Il mio percorso professionale parte nel campo dell'architettura di interni: ristrutturare casa di qualcuno è sempre un processo dove si costruisce una relazione continua e profonda con il cliente. Entri nell'intimità della vita delle persone, devi progettare il loro spazio privato e per fare questo devi imparare a conoscerle.
-                </p>
-                <p>
-                    Ciò che come architetto e interior designer ho sempre studiato e applicato, ha trovato la conferma più evidente durante la mia esperienza da host nel settore extra-alberghiero. Ho avuto continua conferma che le persone tendono a mostrare un rispetto e un'attenzione maggiore verso gli ambienti che trasmettono cura e qualità.
-                </p>
-                <p>
-                    Per questo motivo ho pensato Architettura Estetica: è il risultato di competenze multidisciplinari — design, comunicazione e customer experience.
-                </p>
+                <p>Sono architetto. Mi sono laureata ad Alghero e per oltre dieci anni ho fatto quello che fa un architetto di interni: ristrutturazioni, cantieri, direzione lavori, arredi su misura. Entrare nelle case delle persone, capire come vivono, e progettare lo spazio della loro quotidianità.</p>
+                <p>Negli stessi anni, i miei genitori — entrambi dentisti — stavano trasformando il loro studio in una realtà imprenditoriale più strutturata. È stato un passaggio importante, e ne sono diventata parte. Accanto al mio lavoro di architetto, mi sono trovata a occuparmi di cose che all'università non mi avevano insegnato: come si posiziona un brand, come si comunica un valore, come si costruisce l'esperienza di una persona prima ancora che riceva un servizio. Mi sono formata, ho studiato, ho fatto. Quella clinica l'abbiamo fatta crescere insieme e poi venduta. E in quel percorso ho capito una cosa che ha cambiato il mio modo di lavorare: lo spazio in cui accogli le persone è già cura. Viene prima di tutto il resto — prima del servizio, prima delle parole, prima della competenza. È il gesto più immediato, il più concreto, il più visibile. La cura dello spazio è la prima terapia possibile.</p>
+                <p>Poi nel 2021 ho iniziato a gestire appartamenti per affitti brevi, partendo da un piccolo bilocale che avevo ricavato dal mio appartamento. È nato quasi per caso, ma quello che ho scoperto non lo era affatto: lo spazio curato viene scelto di più, rispettato di più, pagato di più. Ogni prenotazione, ogni recensione, ogni ospite che trattava l'appartamento con riguardo me lo confermava. Quello che sapevo fare come architetto aveva un valore misurabile. Concreto. Quotidiano.</p>
+                <p>Architettura Estetica nasce nel punto in cui queste esperienze si incontrano. Non l'ho pianificato — è successo. Ho capito che il mio modo di guardare le cose era sempre stato lo stesso: leggere quello che c'è, capire cosa non funziona, e ricomporlo fino a quando non trova il suo significato.</p>
+                <p style="margin-bottom: 0;">Non tutti gli ambienti hanno bisogno di essere ristrutturati.<br>Tutti hanno bisogno di essere progettati.</p>
             </div>
         </div>
     </section>
 
-    <!-- Ristrutturazioni -->
-    <section class="ristrutturazioni" id="ristrutturazioni">
-        <div class="ristrutturazioni-grid">
-            <div class="ristrutturazioni-image fade-in">
-                <img src="assets/images/twin-house/Federico_1_10.JPG" alt="Ristrutturazione">
+    <!-- 7. PER CHI È -->
+    <section class="section" id="per-chi">
+        <div class="section-wide">
+            <div class="section-header fade-in">
+                <span class="section-label">A chi mi rivolgo</span>
+                <h2>Per chi è Architettura Estetica</h2>
             </div>
-            <div class="fade-in">
-                <span class="section-label">Silvia Lai Architetto</span>
-                <h2>Ristrutturazioni</h2>
-                <p>
-                    Quando lo spazio ha bisogno di più di una valorizzazione estetica. Ristrutturazioni complete di interni per residenze private e locali commerciali, con la stessa attenzione alla bellezza, all'identità e al benessere.
-                </p>
-                <p>
-                    Progetti sartoriali dove ogni metro quadrato è pensato per chi lo vivrà. Dalla progettazione degli impianti alla selezione dei materiali, dalla direzione lavori all'interior design finale.
-                </p>
-                <ul class="services-list">
-                    <li>Ristrutturazioni complete</li>
-                    <li>Progettazione interni</li>
-                    <li>Direzione lavori</li>
-                    <li>Arredi su misura</li>
-                    <li>Consulenza materiali</li>
-                </ul>
+            <div class="target-cards fade-in">
+                <div class="target-card target-card-primary">
+                    <h3>Ospitalità e affitti brevi</h3>
+                    <p>Il tuo appartamento deve diventare desiderabile e competitivo. Servono risultati rapidi, con budget controllato e resa economica misurabile. Progetto spazi che si prenotano di più, si recensiscono meglio, si pagano a un prezzo superiore.</p>
+                </div>
+                <div class="target-card">
+                    <h3>Case e appartamenti</h3>
+                    <p>La tua casa non ti rappresenta più, ma è ancora in buone condizioni. Vuoi rinnovarla senza il trauma di una ristrutturazione. Senza operai, senza traslochi, senza stress.</p>
+                </div>
+                <div class="target-card">
+                    <h3>Spazi commerciali e studi</h3>
+                    <p>Il tuo spazio di lavoro deve comunicare professionalità, identità e cura. I tuoi clienti lo percepiscono prima ancora di parlare con te.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Contatti -->
+    <!-- 8. RISTRUTTURAZIONI -->
+    <section class="section" id="ristrutturazioni">
+        <div class="ristrutturazioni-content fade-in">
+            <span class="section-label">Silvia Lai Architetto</span>
+            <h2>Quando serve di più</h2>
+            <p>Quando lo spazio ha bisogno di interventi strutturali, impiantistici o di una trasformazione radicale, offro anche il servizio completo di ristrutturazione e progettazione di interni. Stessa attenzione alla bellezza, all'identità e al benessere — con un intervento più profondo.</p>
+            <p><a href="#contatti" style="color: var(--black);">Contattami per saperne di più →</a></p>
+        </div>
+    </section>
+
+    <!-- 9. MANIFESTO -->
+    <section class="manifesto-box" id="manifesto">
+        <div class="manifesto-box-content fade-in">
+            <span class="section-label">Il Manifesto</span>
+            <h2>"Architettura Estetica è una disciplina emergente che si colloca tra architettura, interior design e psicologia dello spazio."</h2>
+            <p>Nasce da una constatazione: non tutti gli ambienti hanno bisogno di essere ristrutturati, ma tutti possono — e devono — essere progettati per valorizzare ciò che già esiste. È un campo che richiede competenze tecniche, sensibilità visiva e capacità di ascolto profondo. Non è home staging. Non è decorazione. È architettura applicata all'esistente.</p>
+        </div>
+    </section>
+
+    <!-- 10. CONTATTI -->
     <section class="contatti" id="contatti">
         <div class="contatti-grid">
             <div class="fade-in">
                 <span class="section-label">Contatti</span>
                 <h2>Parliamo del tuo spazio</h2>
-                
                 <div class="contatto-item">
                     <span class="section-label">Email</span>
                     <a href="mailto:info@architetturaestetica.it">info@architetturaestetica.it</a>
                 </div>
-                
                 <div class="contatto-item">
                     <span class="section-label">Telefono</span>
-                    <a href="tel:+393XX1234567">+39 3XX 123 4567</a>
+                    <a href="tel:+393479559919">+39 347 955 9919</a>
                 </div>
-                
                 <div class="contatto-item">
                     <span class="section-label">Dove opero</span>
                     <p>Alghero · Sassari · Nord Sardegna</p>
                 </div>
-
                 <div class="social-links">
                     <a href="https://www.instagram.com/architettura_estetica" target="_blank">Instagram</a>
-                    <a href="#">LinkedIn</a>
                 </div>
             </div>
-            
             <form class="fade-in" onsubmit="event.preventDefault(); alert('Grazie! Ti risponderò presto.');">
                 <div class="form-group">
                     <label>Nome</label>
@@ -1038,16 +420,6 @@
                     <input type="email" required>
                 </div>
                 <div class="form-group">
-                    <label>Tipo di progetto</label>
-                    <select>
-                        <option value="">Seleziona...</option>
-                        <option>Casa vacanza</option>
-                        <option>Locale commerciale</option>
-                        <option>Residenza privata</option>
-                        <option>Ristrutturazione</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label>Messaggio</label>
                     <textarea placeholder="Raccontami del tuo spazio..."></textarea>
                 </div>
@@ -1056,36 +428,18 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>© 2025 Architettura Estetica · Silvia Lai Architetto · Alghero, Sardegna</p>
     </footer>
 
-    <!-- WhatsApp Button -->
     <a href="https://wa.me/393479559919" class="whatsapp-btn" target="_blank" aria-label="Contattaci su WhatsApp">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>
 
     <script>
-        function toggleMenu() {
-            document.querySelector('.nav-toggle').classList.toggle('active');
-            document.querySelector('.nav-menu').classList.toggle('active');
-        }
-        function closeMenu() {
-            document.querySelector('.nav-toggle').classList.remove('active');
-            document.querySelector('.nav-menu').classList.remove('active');
-        }
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
+        function toggleMenu() { document.querySelector('.nav-toggle').classList.toggle('active'); document.querySelector('.nav-menu').classList.toggle('active'); }
+        function closeMenu() { document.querySelector('.nav-toggle').classList.remove('active'); document.querySelector('.nav-menu').classList.remove('active'); }
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
