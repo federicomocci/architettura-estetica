@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twin House — Architettura Estetica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Libre+Franklin:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Libre Franklin', Helvetica, sans-serif;
+      --color-dark: #1a1a1a;
+      --color-warm: #2a2a2a;
+      --color-rose: #8B2252;
+      --color-light: #f5f1ec;
+      --color-cream: #faf8f5;
+      --color-border: #e0d8d0;
+      --color-gray: #777;
+      --page-max: 1400px;
+      --page-pad: clamp(20px, 5vw, 80px);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--color-warm);
+      background: var(--color-cream);
+      font-size: 15px; line-height: 1.7; font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,248,245,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .nav-inner {
+      max-width: var(--page-max); margin: 0 auto;
+      padding: 18px var(--page-pad);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-brand {
+      font-family: var(--font-body); font-size: 11px;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--color-dark); text-decoration: none; font-weight: 500;
+    }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      font-family: var(--font-body); font-size: 11px;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--color-warm); text-decoration: none; font-weight: 400;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--color-rose); }
+    .nav-toggle {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 28px; height: 20px; position: relative;
+    }
+    .nav-toggle span {
+      display: block; width: 100%; height: 1.5px;
+      background: var(--color-dark); position: absolute; left: 0; transition: all 0.3s;
+    }
+    .nav-toggle span:nth-child(1) { top: 0; }
+    .nav-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+    .nav-toggle span:nth-child(3) { bottom: 0; }
+    .nav-toggle.open span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+
+    /* PROJECT HERO */
+    .project-hero {
+      padding: 160px var(--page-pad) 60px;
+      max-width: var(--page-max);
+      margin: 0 auto;
+    }
+    .project-back {
+      font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--color-rose); text-decoration: none; font-weight: 500;
+      margin-bottom: 48px; display: inline-block;
+      transition: opacity 0.3s;
+    }
+    .project-back:hover { opacity: 0.7; }
+    .project-title {
+      font-family: var(--font-display);
+      font-size: clamp(44px, 7vw, 80px);
+      color: var(--color-dark); font-weight: 300;
+      line-height: 1.1; margin-bottom: 16px;
+    }
+    .project-subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 3vw, 30px);
+      color: var(--color-warm); font-weight: 300;
+      font-style: italic; margin-bottom: 32px;
+    }
+    .project-tags {
+      display: flex; gap: 24px; flex-wrap: wrap;
+    }
+    .project-tags span {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--color-gray); font-weight: 400;
+    }
+
+    /* BEFORE/AFTER HERO */
+    .project-ba {
+      padding: 60px var(--page-pad);
+      max-width: var(--page-max);
+      margin: 0 auto;
+    }
+    .ba-slider {
+      position: relative; width: 100%; aspect-ratio: 5 / 4;
+      overflow: hidden; cursor: ew-resize; border-radius: 2px;
+    }
+    .ba-slider .ba-image {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+    }
+    .ba-slider .ba-before { z-index: 1; background-color: #a89888; clip-path: inset(0 50% 0 0); }
+    .ba-slider .ba-after { z-index: 0; background-color: #d4ccc2; }
+    .ba-slider .ba-handle {
+      position: absolute; top: 0; bottom: 0; left: 50%;
+      width: 3px; background: white; z-index: 3;
+      transform: translateX(-50%); pointer-events: none;
+    }
+    .ba-slider .ba-handle::before {
+      content: ''; position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px; height: 44px; border-radius: 50%;
+      background: white; box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    }
+    .ba-label {
+      position: absolute; top: 20px; z-index: 4;
+      font-family: var(--font-body); font-size: 10px;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: white; background: rgba(0,0,0,0.45);
+      padding: 6px 14px; border-radius: 2px;
+      pointer-events: none; font-weight: 500;
+    }
+    .ba-label-prima { left: 20px; }
+    .ba-label-dopo { right: 20px; }
+    .ba-image-placeholder {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-body); font-size: 11px;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* NARRATIVE */
+    .project-narrative {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 80px var(--page-pad);
+    }
+    .project-narrative p {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2vw, 21px);
+      line-height: 1.8; color: var(--color-warm);
+      margin-bottom: 24px;
+    }
+    .project-narrative .lead {
+      font-size: clamp(22px, 2.8vw, 28px);
+      color: var(--color-dark); font-weight: 300;
+      margin-bottom: 40px;
+    }
+
+    /* IMAGE GRID */
+    .project-images {
+      max-width: var(--page-max);
+      margin: 0 auto;
+      padding: 0 var(--page-pad) 80px;
+    }
+    .img-grid { display: grid; gap: 16px; }
+    .img-grid.two { grid-template-columns: 1fr 1fr; }
+    .img-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+    .img-grid.full { grid-template-columns: 1fr; }
+    .img-placeholder {
+      aspect-ratio: 4 / 3;
+      background: var(--color-light);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-body); font-size: 11px;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--color-gray);
+    }
+    .img-placeholder.tall { aspect-ratio: 3 / 4; }
+    .img-placeholder.wide { aspect-ratio: 21 / 9; }
+    .img-caption {
+      font-size: 12px; color: var(--color-gray);
+      margin-top: 8px; font-style: italic;
+    }
+
+    /* INTERVENTI */
+    .project-interventi {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 var(--page-pad) 80px;
+    }
+    .interventi-label {
+      font-family: var(--font-body); font-size: 11px;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--color-rose); margin-bottom: 32px; font-weight: 500;
+    }
+    .intervento-item {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .intervento-item h4 {
+      font-family: var(--font-display); font-size: 20px;
+      color: var(--color-dark); font-weight: 400; margin-bottom: 8px;
+    }
+    .intervento-item p {
+      font-size: 14px; line-height: 1.7; color: var(--color-warm);
+    }
+
+    /* RECAP */
+    .project-recap {
+      max-width: var(--page-max);
+      margin: 0 auto;
+      padding: 80px var(--page-pad);
+      border-top: 1px solid var(--color-border);
+    }
+    .recap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      text-align: center;
+    }
+    .recap-number {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 56px);
+      color: var(--color-dark); font-weight: 300;
+      line-height: 1;
+    }
+    .recap-label {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--color-gray); margin-top: 12px;
+    }
+    .recap-note {
+      max-width: 600px; margin: 40px auto 0;
+      font-size: 13px; line-height: 1.7;
+      color: var(--color-gray); text-align: center;
+      font-style: italic;
+    }
+
+    /* PROJECT NAV */
+    .project-nav {
+      max-width: var(--page-max); margin: 0 auto;
+      padding: 60px var(--page-pad);
+      border-top: 1px solid var(--color-border);
+      display: flex; justify-content: space-between;
+    }
+    .project-nav a {
+      font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--color-rose); text-decoration: none; font-weight: 500;
+      transition: opacity 0.3s;
+    }
+    .project-nav a:hover { opacity: 0.7; }
+
+    /* CTA */
+    .project-cta {
+      text-align: center;
+      padding: 80px var(--page-pad);
+      background: var(--color-light);
+      border-top: 1px solid var(--color-border);
+    }
+    .project-cta p {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 32px);
+      color: var(--color-dark); font-weight: 300;
+      font-style: italic; margin-bottom: 32px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 36px;
+      font-family: var(--font-body); font-size: 12px;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none; border-radius: 2px;
+      transition: all 0.3s; font-weight: 500;
+      background: var(--color-dark); color: var(--color-cream);
+    }
+    .btn:hover { background: var(--color-rose); }
+
+    footer {
+      padding: 40px var(--page-pad);
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+    }
+    footer span { font-size: 11px; letter-spacing: 1px; color: var(--color-gray); }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(250,248,245,0.98); backdrop-filter: blur(20px);
+        padding: 24px var(--page-pad); gap: 20px;
+        border-bottom: 1px solid var(--color-border);
+      }
+      .nav-toggle { display: block; }
+      .img-grid.two, .img-grid.three { grid-template-columns: 1fr; }
+      .recap-grid { grid-template-columns: 1fr; gap: 32px; }
+      .project-nav { flex-direction: column; gap: 16px; }
+    }
+
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-brand">Architettura Estetica</a>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      <div class="nav-links">
+        <a href="../index.html#trasformazioni">Trasformazioni</a>
+        <a href="../index.html#approccio">Approccio</a>
+        <a href="../index.html#chi-sono">Chi sono</a>
+        <a href="../manifesto.html">Manifesto</a>
+        <a href="../index.html#contatto">Contatto</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="project-hero fade-in">
+    <a href="../index.html#trasformazioni" class="project-back">← Trasformazioni</a>
+    <h1 class="project-title">Twin House</h1>
+    <p class="project-subtitle">Appartamento anni Sessanta</p>
+    <div class="project-tags">
+      <span>Ospitalità</span>
+      <span>Alghero</span>
+      <span>110 mq (2 bilocali)</span>
+      <span>Novembre 2021</span>
+    </div>
+  </header>
+
+  <div class="project-ba">
+    <div class="ba-slider">
+      <div class="ba-image ba-before" style="background-color: #a8988c;">
+        <div class="ba-image-placeholder">[ Foto PRIMA — soggiorno spoglio con letti singoli, senza identità ]</div>
+      </div>
+      <div class="ba-image ba-after" style="background-color: #d0c8be;">
+        <div class="ba-image-placeholder">[ Foto DOPO — soggiorno con divano giallo, poster, stile vintage-pop ]</div>
+      </div>
+      <div class="ba-handle"></div>
+      <span class="ba-label ba-label-prima">Prima</span>
+      <span class="ba-label ba-label-dopo">Dopo</span>
+    </div>
+  </div>
+
+
+  <div class="project-narrative">
+    <p class="lead fade-in">Un grande appartamento in un condominio storico ad Alghero, uno dei primi palazzi alti costruiti nella cittadina catalana, nel 1963. Pavimenti originali in marmette di graniglia con pietre locali sarde e soffitti alti tre metri.</p>
+
+    <p class="fade-in">Grazie ai suoi 110 mq, l'appartamento si prestava a essere diviso in due bilocali gemelli — Twin 1 e Twin 2 — con accesso da un piccolo disimpegno comune. Ristrutturato totalmente nel 2016, dal 2016 al 2022 era stato dedicato alla residenza stanziale. La richiesta: adeguare gli appartamenti per la nuova funzione di affitti brevi turistici.</p>
+
+    <p class="fade-in">I due bilocali presentavano livelli di intervento molto diversi. Twin 2 aveva ospitato inquilini a lungo termine che avevano alterato le condizioni dello spazio: pavimento vinilico sovrapposto in bagno, piatto doccia e bidet danneggiati, intonaci bucherellati dai tasselli. Twin 1 era già accogliente, con arredi di valore, ma necessitava di valorizzazione e allestimento per la nuova funzione.</p>
+  </div>
+
+  <div class="project-images">
+    <div class="img-grid two fade-in">
+      <div class="img-placeholder">[ Twin 2 soggiorno PRIMA — letti singoli, spoglio ]</div>
+      <div class="img-placeholder">[ Twin 1 cucina PRIMA — senza cappa, parete macchiata ]</div>
+    </div>
+  </div>
+
+  <div class="project-interventi fade-in">
+    <p class="interventi-label">Interventi — Twin 2</p>
+    <div class="intervento-item">
+      <h4>Ripristino e pittura</h4>
+      <p>Ripristino rasature e pittura con smalto all'acqua semi-lucido bianco in tutti gli ambienti. Ripulitura del pavimento dalla colla residua del rivestimento vinilico posato dai precedenti inquilini.</p>
+    </div>
+    <div class="intervento-item">
+      <h4>Bagno</h4>
+      <p>Sostituzione piatto doccia, cristallo e bidet. Controparete valorizzata con tonalità fresca. Grande lastra specchio su un'intera parete con lampade che conferiscono identità vintage senza invecchiare l'ambiente.</p>
+    </div>
+    <div class="intervento-item">
+      <h4>Caratterizzazione degli ambienti</h4>
+      <p>Divano letto giallo acido di seconda mano, stile vintage-pop che dialoga con le piante. Mobile rivestito con resina cementizia in colore complementare. Tre poster realizzati personalmente con tecnica del collage — paesaggio costiero. Testiera letto con colore caldo e composizioni cromatiche che richiamano Capo Caccia.</p>
+    </div>
+  </div>
+
+  <div class="project-interventi fade-in">
+    <p class="interventi-label">Interventi — Twin 1</p>
+    <div class="intervento-item">
+      <h4>Veletta in cartongesso</h4>
+      <p>L'intervento che ha realmente rivoluzionato lo spazio: posizionata sopra la parete armadio, ha eliminato il problema dell'area usata come ripostiglio "a vista", enfatizzato l'altezza della stanza e fatto sembrare gli arredi realizzati su misura.</p>
+    </div>
+    <div class="intervento-item">
+      <h4>Cucina</h4>
+      <p>Cappa filtrante inserita in un volume di cartongesso smaltato. Rivestimento in pietra naturale crema perla posato sotto la cappa e come alzatina lungo il perimetro. Soluzione pulita, pratica, che caratterizza la parete rispettando la scelta originale dei proprietari.</p>
+    </div>
+    <div class="intervento-item">
+      <h4>Allestimento e dettagli</h4>
+      <p>Tavolo tondo Ikea valorizzato con lastra di plexiglass rosa tenue realizzata su misura. Mensole con oggetti iconici, fotografie e piante in coltura idroponica. Ingresso allestito con specchio grande e stand per abiti — il primo ambiente che accoglie e rappresenta il resto della casa.</p>
+    </div>
+  </div>
+
+  <div class="project-images">
+    <div class="img-grid two fade-in">
+      <div class="img-placeholder">[ Twin 2 soggiorno DOPO — divano giallo, poster, piante ]</div>
+      <div class="img-placeholder">[ Twin 1 cucina DOPO — pietra naturale, cappa, ordine ]</div>
+    </div>
+    <div class="img-grid two fade-in" style="margin-top:16px;">
+      <div class="img-placeholder">[ Twin 2 camera DOPO — collage Capo Caccia ]</div>
+      <div class="img-placeholder">[ Twin 1 camera DOPO — veletta, armadi integrati ]</div>
+    </div>
+    <div class="img-grid two fade-in" style="margin-top:16px;">
+      <div class="img-placeholder">[ Twin 2 bagno DOPO — specchio, lampade vintage ]</div>
+      <div class="img-placeholder">[ Twin 1 soggiorno DOPO — tavolo rosa, mensole ]</div>
+    </div>
+  </div>
+
+  <div class="project-narrative">
+    <p class="fade-in">Due appartamenti gemelli, due identità diverse. Twin 2 ha trovato un carattere vintage-pop divertente e inaspettato. Twin 1 è diventato un ambiente raffinato e contenuto dove ogni dettaglio è al suo posto. La dimostrazione che lo stesso metodo può produrre risultati completamente diversi — perché ogni spazio racconta una storia propria.</p>
+  </div>
+
+
+  <div class="project-recap fade-in">
+    <div class="recap-grid">
+      <div>
+        <p class="recap-number">~9.500 €</p>
+        <p class="recap-label">Costo interventi</p>
+      </div>
+      <div>
+        <p class="recap-number">< 1 mese</p>
+        <p class="recap-label">Tempo di realizzazione</p>
+      </div>
+      <div>
+        <p class="recap-number">110 mq</p>
+        <p class="recap-label">Superficie trattata</p>
+      </div>
+    </div>
+    <p class="recap-note">Il costo degli interventi comprende materiali e manodopera esecutiva. Il compenso professionale per progettazione, direzione e coordinamento è definito separatamente in base al progetto.</p>
+  </div>
+
+  <div class="project-nav">
+    <a href="casa-dau.html">← Casa Dau</a>
+    <span></span>
+  </div>
+
+  <div class="project-cta">
+    <p>Vuoi trasformare il tuo spazio? Parliamone.</p>
+    <a href="https://wa.me/393479559919" class="btn" target="_blank" rel="noopener">Scrivimi su WhatsApp</a>
+  </div>
+
+  <footer>
+    <span>© 2025 Silvia Lai Architetto — Alghero · Sassari · Nord Sardegna</span>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => { toggle.classList.toggle('open'); navLinks.classList.toggle('open'); });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.ba-slider').forEach(slider => {
+      const before = slider.querySelector('.ba-before');
+      const handle = slider.querySelector('.ba-handle');
+      let isDragging = false;
+      function update(x) {
+        const rect = slider.getBoundingClientRect();
+        let pct = ((x - rect.left) / rect.width) * 100;
+        pct = Math.max(2, Math.min(98, pct));
+        before.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+        handle.style.left = pct + '%';
+      }
+      slider.addEventListener('mousedown', e => { isDragging = true; update(e.clientX); });
+      slider.addEventListener('touchstart', e => { isDragging = true; update(e.touches[0].clientX); }, { passive: true });
+      window.addEventListener('mousemove', e => { if (isDragging) update(e.clientX); });
+      window.addEventListener('touchmove', e => { if (isDragging) update(e.touches[0].clientX); }, { passive: true });
+      window.addEventListener('mouseup', () => isDragging = false);
+      window.addEventListener('touchend', () => isDragging = false);
+    });
+  </script>
+</body>
+</html>

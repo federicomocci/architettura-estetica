@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manifesto — Architettura Estetica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Libre+Franklin:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Libre Franklin', Helvetica, sans-serif;
+      --color-dark: #1a1a1a;
+      --color-warm: #2a2a2a;
+      --color-rose: #8B2252;
+      --color-light: #f5f1ec;
+      --color-cream: #faf8f5;
+      --color-border: #e0d8d0;
+      --color-gray: #777;
+      --page-pad: clamp(20px, 5vw, 80px);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--color-warm);
+      background: var(--color-cream);
+      font-size: 15px;
+      line-height: 1.7;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV — same as homepage */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,248,245,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .nav-inner {
+      max-width: 1400px; margin: 0 auto;
+      padding: 18px var(--page-pad);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-brand {
+      font-family: var(--font-body); font-size: 11px;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--color-dark); text-decoration: none; font-weight: 500;
+    }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      font-family: var(--font-body); font-size: 11px;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--color-warm); text-decoration: none; font-weight: 400;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--color-rose); }
+    .nav-toggle {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 28px; height: 20px; position: relative;
+    }
+    .nav-toggle span {
+      display: block; width: 100%; height: 1.5px;
+      background: var(--color-dark); position: absolute; left: 0; transition: all 0.3s;
+    }
+    .nav-toggle span:nth-child(1) { top: 0; }
+    .nav-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+    .nav-toggle span:nth-child(3) { bottom: 0; }
+    .nav-toggle.open span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+
+    /* MANIFESTO CONTENT */
+    .manifesto-header {
+      padding: 180px var(--page-pad) 80px;
+      text-align: center;
+    }
+    .manifesto-label {
+      font-family: var(--font-body); font-size: 11px;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--color-rose); margin-bottom: 24px; font-weight: 500;
+    }
+    .manifesto-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 72px);
+      color: var(--color-dark); font-weight: 300;
+    }
+
+    .manifesto-body {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 var(--page-pad) 120px;
+    }
+    .manifesto-body p {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.2vw, 22px);
+      line-height: 1.75;
+      color: var(--color-warm);
+      margin-bottom: 28px;
+    }
+    .manifesto-body .emphasis {
+      font-weight: 500;
+      font-style: italic;
+      color: var(--color-dark);
+      font-size: clamp(20px, 2.5vw, 26px);
+      margin: 48px 0;
+    }
+    .manifesto-body .divider {
+      text-align: center;
+      color: var(--color-border);
+      font-size: 24px;
+      margin: 48px 0;
+    }
+    .manifesto-body .closing {
+      font-weight: 500;
+      font-style: italic;
+      color: var(--color-dark);
+      font-size: clamp(22px, 3vw, 30px);
+      text-align: center;
+      margin: 60px 0 16px;
+    }
+    .manifesto-body .closing-sub {
+      font-weight: 500;
+      font-style: italic;
+      color: var(--color-dark);
+      font-size: clamp(22px, 3vw, 30px);
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .manifesto-signature {
+      text-align: center;
+      padding: 40px 0;
+      border-top: 1px solid var(--color-border);
+    }
+    .manifesto-signature .name {
+      font-family: var(--font-display);
+      font-size: 24px; color: var(--color-dark); font-weight: 400;
+    }
+    .manifesto-signature .role {
+      font-size: 13px; color: var(--color-gray); margin-top: 4px;
+    }
+
+    footer {
+      padding: 40px var(--page-pad);
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+    }
+    footer span { font-size: 11px; letter-spacing: 1px; color: var(--color-gray); }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(250,248,245,0.98); backdrop-filter: blur(20px);
+        padding: 24px var(--page-pad); gap: 20px;
+        border-bottom: 1px solid var(--color-border);
+      }
+      .nav-toggle { display: block; }
+    }
+
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Architettura Estetica</a>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      <div class="nav-links">
+        <a href="index.html#trasformazioni">Trasformazioni</a>
+        <a href="index.html#approccio">Approccio</a>
+        <a href="index.html#chi-sono">Chi sono</a>
+        <a href="manifesto.html">Manifesto</a>
+        <a href="index.html#contatto">Contatto</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="manifesto-header fade-in">
+    <p class="manifesto-label">Architettura Estetica</p>
+    <h1 class="manifesto-title">Manifesto</h1>
+  </header>
+
+  <article class="manifesto-body">
+
+    <p class="fade-in">Gli spazi che abitiamo parlano di noi. Raccontano chi siamo, cosa facciamo e come viviamo. Lo fanno sempre — che ce ne occupiamo o no.</p>
+
+    <p class="fade-in">Uno spazio curato comunica attenzione. Uno spazio trascurato comunica indifferenza. Non è una questione di gusto: è un fatto. Il luogo in cui viviamo, lavoriamo o accogliamo gli altri ci condiziona ogni giorno — modella i nostri comportamenti, le nostre emozioni, il modo in cui ci sentiamo e il modo in cui gli altri ci percepiscono.</p>
+
+    <p class="fade-in">Eppure, quando uno spazio smette di funzionare, la maggior parte di noi non fa nulla. Perché migliorare la propria casa o il proprio locale significa, nell'immaginario comune, ristrutturare. E ristrutturare significa cantiere, macerie, mesi di lavoro, decine di migliaia di euro. Una soglia troppo alta. Così si rimanda, ci si adatta, si convive con ambienti che non ci rappresentano più.</p>
+
+    <p class="emphasis fade-in">Ma non sempre serve ristrutturare. Serve sempre, invece, agire sullo spazio.</p>
+
+    <p class="fade-in">Esiste un territorio inesplorato tra la ristrutturazione completa e il non fare niente. Un territorio fatto di interventi mirati, non invasivi, rapidi e sostenibili — guidati da un progetto vero, con competenze vere. Non decorazione. Non home staging. Architettura.</p>
+
+    <p class="fade-in">Ho chiamato questo territorio Architettura Estetica.</p>
+
+    <p class="fade-in">Come la medicina estetica è nata per prendersi cura dell'aspetto delle persone senza ricorrere alla chirurgia — con trattamenti mirati, poco invasivi, che valorizzano senza stravolgere — così l'Architettura Estetica si prende cura dello spazio. Lo legge, lo semplifica, ne esalta i punti di forza e ne armonizza le imperfezioni. Senza demolizioni. Senza stress. Con un metodo.</p>
+
+    <div class="divider fade-in">—</div>
+
+    <p class="fade-in">Credo che la bellezza non sia un lusso. È una forma di cura. Spazi belli e valorizzati fanno stare bene chi li abita. Ma la bellezza, da sola, non basta: serve identità. Uno spazio bello ma privo di carattere non suscita emozioni. È quando l'ambiente racconta una storia — la storia di chi lo vive — che si crea un legame, un'esperienza, un significato.</p>
+
+    <p class="fade-in">Per questo ogni intervento parte dall'ascolto: chi sei, come vivi, cosa vuoi comunicare. E per questo non esistono protocolli universali. Ogni spazio è unico, come ogni persona. E merita un progetto pensato per lui.</p>
+
+    <div class="divider fade-in">—</div>
+
+    <p class="fade-in">Architettura Estetica nasce da dieci anni di cantieri, di case, di relazioni con le persone. Nasce dalla scoperta che spesso bastano interventi minimi per cambiare radicalmente il modo in cui uno spazio viene vissuto e percepito. Nasce dalla convinzione che il mestiere dell'architetto possa — e debba — essere accessibile anche a chi non ha bisogno di demolire un muro, ma ha bisogno di qualcuno che lo guidi nel trasformare ciò che ha già.</p>
+
+    <p class="closing fade-in">La cura dello spazio è la prima terapia possibile.</p>
+    <p class="closing-sub fade-in">Iniziamo da lì.</p>
+
+    <div class="manifesto-signature fade-in">
+      <p class="name">Silvia Lai</p>
+      <p class="role">Architetto — Architettura Estetica</p>
+    </div>
+  </article>
+
+  <footer>
+    <span>© 2025 Silvia Lai Architetto — Alghero · Sassari · Nord Sardegna</span>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => { toggle.classList.toggle('open'); links.classList.toggle('open'); });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
