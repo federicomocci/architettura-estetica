@@ -503,11 +503,15 @@
 
     /* ====== ANIMATIONS ====== */
     .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in.animate {
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    .fade-in.visible {
+    .fade-in.animate.visible {
       opacity: 1;
       transform: translateY(0);
     }
@@ -752,7 +756,10 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.15 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-in').forEach(el => {
+      el.classList.add('animate');
+      observer.observe(el);
+    });
 
     // Before/After sliders
     document.querySelectorAll('.ba-slider').forEach(slider => {
