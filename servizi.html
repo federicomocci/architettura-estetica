@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servizi — Architettura Estetica</title>
+  <meta name="description" content="Valutazione, progetto e realizzazione: il percorso di Architettura Estetica per valorizzare il tuo spazio senza ristrutturare. Silvia Lai Architetto.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Libre+Franklin:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-dark: #1a1a1a;
+      --color-light: #f8f6f3;
+      --color-accent: #8B2252;
+      --color-gray: #888;
+      --color-border: #e0dbd5;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Libre Franklin', Helvetica, Arial, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--color-dark);
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* --- NAV --- */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--color-dark);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-dark);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--color-accent); }
+    .nav-links a.active { color: var(--color-accent); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 5px;
+    }
+    .hamburger span {
+      width: 24px;
+      height: 1.5px;
+      background: var(--color-dark);
+      transition: all 0.3s;
+    }
+
+    /* --- SECTIONS --- */
+    section {
+      padding: 100px 40px;
+    }
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 12px;
+    }
+
+    /* --- APERTURA --- */
+    .apertura {
+      background: var(--color-light);
+      text-align: center;
+      padding-top: 160px;
+    }
+    .apertura h1 {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3.5vw, 42px);
+      font-weight: 300;
+      line-height: 1.4;
+      color: var(--color-dark);
+      margin-bottom: 48px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .apertura p {
+      font-size: 16px;
+      color: var(--color-dark);
+      margin-bottom: 24px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    /* --- FASI --- */
+    .fasi {
+      background: #fff;
+    }
+    .fase {
+      position: relative;
+      margin-bottom: 80px;
+      padding-left: 0;
+    }
+    .fase:last-child {
+      margin-bottom: 0;
+    }
+    .fase-numero {
+      font-family: var(--font-display);
+      font-size: 120px;
+      font-weight: 600;
+      line-height: 1;
+      color: rgba(0,0,0,0.06);
+      margin-bottom: -20px;
+    }
+    .fase h3 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 2.5vw, 30px);
+      font-weight: 400;
+      color: var(--color-dark);
+      margin-bottom: 24px;
+    }
+    .fase p {
+      font-size: 16px;
+      color: var(--color-dark);
+      margin-bottom: 20px;
+      max-width: 720px;
+    }
+    .fase-risultato {
+      border-left: 3px solid var(--color-accent);
+      padding-left: 24px;
+      margin-top: 28px;
+      margin-bottom: 20px;
+    }
+    .fase-risultato p {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--color-dark);
+      margin-bottom: 0;
+    }
+    .fase-prezzo {
+      font-size: 14px;
+      color: var(--color-gray);
+      margin-top: 16px;
+    }
+
+    /* --- PRINCIPI --- */
+    .principi {
+      background: var(--color-light);
+    }
+    .principi h2 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 300;
+      line-height: 1.4;
+      color: var(--color-dark);
+      margin-bottom: 48px;
+    }
+    .principio {
+      margin-bottom: 36px;
+    }
+    .principio:last-child {
+      margin-bottom: 0;
+    }
+    .principio h3 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--color-dark);
+      margin-bottom: 8px;
+    }
+    .principio p {
+      font-size: 16px;
+      color: var(--color-dark);
+      max-width: 720px;
+    }
+
+    /* --- OLTRE --- */
+    .oltre {
+      background: #fff;
+    }
+    .oltre h2 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 300;
+      line-height: 1.4;
+      color: var(--color-dark);
+      margin-bottom: 12px;
+    }
+    .oltre-intro {
+      font-size: 16px;
+      color: var(--color-dark);
+      margin-bottom: 48px;
+      max-width: 720px;
+    }
+    .servizio-extra {
+      margin-bottom: 32px;
+    }
+    .servizio-extra:last-child {
+      margin-bottom: 0;
+    }
+    .servizio-extra h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--color-dark);
+      margin-bottom: 6px;
+    }
+    .servizio-extra p {
+      font-size: 16px;
+      color: var(--color-dark);
+      max-width: 720px;
+    }
+
+    /* --- CONTATTO --- */
+    .contatto {
+      background: var(--color-light);
+      text-align: center;
+    }
+    .contatto .cta-phrase {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--color-dark);
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+    .contatto .cta-sub {
+      font-size: 16px;
+      color: var(--color-dark);
+      margin-bottom: 36px;
+    }
+    .contatto-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .contatto-links a {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--color-dark);
+      text-decoration: none;
+      padding: 14px 32px;
+      border: 1px solid var(--color-dark);
+      transition: all 0.3s;
+      letter-spacing: 0.05em;
+    }
+    .contatto-links a:hover {
+      background: var(--color-dark);
+      color: #fff;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      padding: 40px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--color-gray);
+      border-top: 1px solid var(--color-border);
+    }
+    footer a {
+      color: var(--color-gray);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--color-dark); }
+
+    /* --- FADE IN --- */
+    .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in.animate {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- WHATSAPP STICKY --- */
+    .whatsapp-sticky {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+    }
+    .whatsapp-sticky:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255,255,255,0.98);
+        padding: 24px 40px;
+        gap: 20px;
+        border-bottom: 1px solid var(--color-border);
+      }
+      .hamburger { display: flex; }
+      section { padding: 60px 24px; }
+      .apertura { padding-top: 120px; }
+      .nav-inner { padding: 16px 24px; }
+      .fase-numero { font-size: 80px; }
+      .whatsapp-sticky {
+        width: 48px;
+        height: 48px;
+        bottom: 18px;
+        right: 18px;
+      }
+      .whatsapp-sticky svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Architettura Estetica</a>
+      <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html#trasformazioni">Trasformazioni</a></li>
+        <li><a href="servizi.html" class="active">Servizi</a></li>
+        <li><a href="index.html#approccio">Approccio</a></li>
+        <li><a href="index.html#chi-sono">Chi sono</a></li>
+        <li><a href="manifesto.html">Manifesto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- APERTURA -->
+  <section class="apertura">
+    <div class="section-inner fade-in">
+      <h1>Non tutti gli ambienti hanno bisogno di essere ristrutturati.<br>Ma tutti hanno bisogno di essere progettati.</h1>
+      <p>Case abitate da decenni, dove tutto &egrave; ancora solido ma lo stile non corrisponde pi&ugrave; al presente. Appartamenti per l&rsquo;ospitalit&agrave; che hanno bisogno di essere desiderabili e funzionali. Studi e locali commerciali che devono comunicare identit&agrave; e cura &mdash; ma che oggi appaiono confusi, trascurati.</p>
+      <p>Architettura Estetica &egrave; la cura dello spazio: interventi mirati su estetica, funzionalit&agrave; e identit&agrave; degli ambienti, guidati da un architetto. Una progettazione pensata per tutte quelle situazioni in cui non c&rsquo;&egrave; bisogno di una ristrutturazione, ma di trattamenti mirati che valorizzino ci&ograve; che gi&agrave; esiste.</p>
+      <p>Il primo passo &egrave; sempre capire cosa serve a te e al tuo spazio. Il percorso &egrave; pensato per questo: tre fasi, ciascuna con un risultato concreto e autonomo. Si valuta quanto ricevuto prima di decidere se proseguire. Nessun impegno oltre la fase in corso.</p>
+    </div>
+  </section>
+
+  <!-- LE TRE FASI -->
+  <section class="fasi">
+    <div class="section-inner">
+
+      <!-- FASE 1 -->
+      <div class="fase fade-in">
+        <div class="fase-numero">1</div>
+        <h3>Valutazione dello spazio</h3>
+        <p>Tutto parte da un dialogo: tra lo spazio e chi lo vive o lo gestisce. Da un lato si osserva l&rsquo;ambiente nelle sue condizioni reali &mdash; i punti di forza, la luce, i materiali, le peculiarit&agrave;, il contesto. Dall&rsquo;altro si ascoltano le necessit&agrave;, gli obiettivi, i vincoli: il budget, i tempi, le condizioni dell&rsquo;immobile.</p>
+        <p>Da questo confronto emerge un quadro onesto della situazione: cosa funziona, cosa no, e cosa &egrave; concretamente possibile fare.</p>
+        <div class="fase-risultato">
+          <p>Il risultato: una relazione chiara con la diagnosi dello spazio e le linee guida dell&rsquo;intervento. Il committente ha finalmente un quadro oggettivo su cui basare le proprie decisioni.</p>
+        </div>
+        <p class="fase-prezzo">A partire da &euro; 200, forfait. In caso di prosecuzione, assorbita nella fase successiva.</p>
+      </div>
+
+      <!-- FASE 2 -->
+      <div class="fase fade-in">
+        <div class="fase-numero">2</div>
+        <h3>Progetto dello spazio</h3>
+        <p>La diagnosi diventa progetto. Ogni scelta &mdash; il concept visivo, la palette colori, il layout degli arredi, il piano degli interventi &mdash; ha una ragione che nasce dal dialogo tra lo spazio e chi lo abita. Non si impone uno stile: si costruisce un&rsquo;identit&agrave;. Lo spazio e la persona devono dialogare, altrimenti il progetto perde coerenza e significato.</p>
+        <p>Il progetto include la stima del budget per materiali e manodopera, perch&eacute; il quadro deve essere completo e trasparente prima di qualsiasi decisione.</p>
+        <div class="fase-risultato">
+          <p>Il risultato: un documento progettuale completo. Il committente vede esattamente come cambier&agrave; lo spazio e quanto coster&agrave; realizzarlo. Da qui &egrave; possibile procedere in autonomia o affidare la realizzazione ad Architettura Estetica.</p>
+        </div>
+        <p class="fase-prezzo">A partire da &euro; 600, forfait (calcolato su base &euro; 12&ndash;15/mq).</p>
+      </div>
+
+      <!-- FASE 3 -->
+      <div class="fase fade-in">
+        <div class="fase-numero">3</div>
+        <h3>Realizzazione</h3>
+        <p>Il progetto prende forma nello spazio reale. Fornitori e artigiani selezionati e coordinati, acquisti gestiti, ogni fase operativa supervisionata fino alla verifica finale. Il committente non deve gestire nulla: ogni aspetto &egrave; seguito fino alla consegna.</p>
+        <p>Quando le condizioni dello spazio lo richiedono, l&rsquo;intervento pu&ograve; includere opere pi&ugrave; strutturate. La logica resta la stessa: interventi mirati, controllati, guidati dal progetto.</p>
+        <div class="fase-risultato">
+          <p>Il risultato: lo spazio trasformato, pronto all&rsquo;uso, documentato con fotografie prima e dopo l&rsquo;intervento.</p>
+        </div>
+        <p class="fase-prezzo">8% sui costi di intervento (materiali e manodopera).</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COSA GUIDA OGNI SCELTA -->
+  <section class="principi">
+    <div class="section-inner fade-in">
+      <h2>Cosa guida ogni scelta</h2>
+
+      <div class="principio">
+        <h3>Bellezza</h3>
+        <p>Non &egrave; un concetto astratto. &Egrave; concreta: identit&agrave;, armonia, funzionalit&agrave; e benessere. Uno spazio bello &egrave; uno spazio che funziona, che rappresenta chi lo abita, che migliora la quotidianit&agrave; o l&rsquo;esperienza di chi lo attraversa.</p>
+      </div>
+
+      <div class="principio">
+        <h3>Significato</h3>
+        <p>Ogni scelta ha un perch&eacute;. Niente &egrave; casuale, niente &egrave; riempitivo. Il significato &egrave; ci&ograve; che separa un progetto da una decorazione: un filo conduttore, un&rsquo;intenzione, una ragione per ogni elemento.</p>
+      </div>
+
+      <div class="principio">
+        <h3>Responsabilit&agrave;</h3>
+        <p>Verso il budget, verso i tempi, verso la qualit&agrave; del risultato. Intervenire sullo spazio delle persone &egrave; un atto di responsabilit&agrave;. Ogni intervento dimostra che valorizzare uno spazio richiede competenze reali &mdash; architettoniche, progettuali, di visione.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- OLTRE IL PERCORSO -->
+  <section class="oltre">
+    <div class="section-inner fade-in">
+      <h2>Oltre il percorso</h2>
+      <p class="oltre-intro">Il percorso pu&ograve; estendersi in base alle esigenze specifiche dello spazio e del committente.</p>
+
+      <div class="servizio-extra">
+        <h3>Progettazione arredi su misura</h3>
+        <p>Disegno tecnico e progettazione esecutiva di arredi e complementi su misura, con specifiche per la realizzazione artigianale. Il confronto con il falegname o l&rsquo;artigiano prosegue fino alla validazione del pezzo.</p>
+      </div>
+
+      <div class="servizio-extra">
+        <h3>Rilievo e restituzione grafica</h3>
+        <p>Planimetria arredata e quotata, per l&rsquo;ottenimento del CIN, la registrazione BDSR, la SCIA e ogni adempimento normativo legato a locazioni turistiche e strutture ricettive.</p>
+      </div>
+
+      <div class="servizio-extra">
+        <h3>Pratiche di avvio attivit&agrave;</h3>
+        <p>Gestione delle pratiche amministrative: SCIA, comunicazione al Comune, registrazione BDSR, richiesta CIN, adempimenti regionali. Seguite direttamente o tramite professionista abilitato.</p>
+      </div>
+
+      <div class="servizio-extra">
+        <h3>Allestimento e servizio fotografico</h3>
+        <p>Styling finale e servizio fotografico professionale, ottimizzato per i portali di prenotazione e i canali di promozione della struttura.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTATTO -->
+  <section class="contatto">
+    <div class="section-inner fade-in">
+      <p class="cta-phrase">Il primo passo &egrave; capire cosa serve al tuo spazio.</p>
+      <p class="cta-sub">Raccontaci il tuo spazio. Una conversazione &egrave; il modo migliore per iniziare.</p>
+      <div class="contatto-links">
+        <a href="https://wa.me/393479559919">Scrivimi su WhatsApp</a>
+        <a href="mailto:architetturaestetica@gmail.com">architetturaestetica@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Silvia Lai Architetto<br>
+    Alghero &middot; Sassari &middot; Nord Sardegna<br>
+    <a href="https://www.instagram.com/architettura_estetica" target="_blank" rel="noopener">Instagram</a></p>
+  </footer>
+
+  <script>
+    // Fade in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-in').forEach(el => {
+      el.classList.add('animate');
+      observer.observe(el);
+    });
+  </script>
+
+  <!-- WhatsApp sticky -->
+  <a href="https://wa.me/393479559919" class="whatsapp-sticky" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.121.553 4.115 1.519 5.845L.036 23.77l6.103-1.44A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75c-1.875 0-3.652-.502-5.176-1.41l-.37-.22-3.828.904.961-3.693-.243-.386A9.71 9.71 0 012.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75z"/></svg>
+  </a>
+
+</body>
+</html>
