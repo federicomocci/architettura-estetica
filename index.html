@@ -465,6 +465,28 @@
       transform: translateY(0);
     }
 
+    /* --- WHATSAPP STICKY --- */
+    .whatsapp-sticky {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+    }
+    .whatsapp-sticky:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    }
+
     /* --- RESPONSIVE --- */
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -490,6 +512,16 @@
       .chi-sono-photo {
         max-width: 240px;
       }
+      .whatsapp-sticky {
+        width: 48px;
+        height: 48px;
+        bottom: 18px;
+        right: 18px;
+      }
+      .whatsapp-sticky svg {
+        width: 24px;
+        height: 24px;
+      }
     }
   </style>
 </head>
@@ -503,9 +535,10 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links">
-        <li><a href="trasformazioni.html">Trasformazioni</a></li>
-        <li><a href="approccio.html">Approccio</a></li>
-        <li><a href="chi-sono.html">Chi sono</a></li>
+        <li><a href="#trasformazioni">Trasformazioni</a></li>
+        <li><a href="servizi.html">Servizi</a></li>
+        <li><a href="#approccio">Approccio</a></li>
+        <li><a href="#chi-sono">Chi sono</a></li>
         <li><a href="manifesto.html">Manifesto</a></li>
       </ul>
     </div>
@@ -516,7 +549,7 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1>Gli spazi che abitiamo<br>parlano di noi.<br>Lo fanno sempre &mdash;<br>che ce ne occupiamo o no.</h1>
+      <h1>Non sempre serve ristrutturare.<br>Serve sempre progettare.</h1>
       <p class="hero-sub">Silvia Lai &mdash; Architetto</p>
     </div>
   </section>
